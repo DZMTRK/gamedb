@@ -1,0 +1,160 @@
+{
+    "game": [
+        {
+            "id": 1,
+            "title": "Gothic",
+            "year": "2001",
+            "genre": [
+                "Adventure",
+                "Role-playing (RPG)"
+            ],
+            "raiting": "8,6",
+            "developer": "Piranha Bytes",
+            "publisher": [
+                "JoWooD Entertainment AG",
+                "Nordic Games Publishing",
+                "Egmont Interactive",
+                "Xicat Interactive"
+            ]
+        },
+        {
+            "id": 2,
+            "title": "Mafia",
+            "year": "2002",
+            "genre": [
+                "Adventure",
+                "Fighting",
+                "Racing",
+                "Shooter" 
+            ],
+            "raiting": "8,7",
+            "developer": "Illusion Softworks",
+            "publisher": [
+                "Gathering of Developers",
+                "Take-Two Interactive" 
+            ]
+        },
+        {
+            "id": 3,
+            "title": "Doom 3",
+            "year": "2004",
+            "genre": [
+                "Shooter"
+            ],
+            "raiting": "7,9",
+            "developer": "id Software",
+            "publisher": [
+                "Activision",
+                "Aspyr Media"  
+            ]
+        },
+        {
+            "id": 4,
+            "title": "F.E.A.R.",
+            "year": "2005",
+            "genre": [
+                "Shooter"
+            ],
+            "raiting": "8,1",
+            "developer": "Monolith Productions",
+            "publisher": [
+                "Sierra Entertainment",
+                "Vivendi Universal Games"
+            ]
+        },
+        {
+            "id": 5,
+            "title": "S.T.A.L.K.E.R.: Shadow of Chernobyl",
+            "year": "2007",
+            "genre": [
+                "Role-playing (RPG)",
+                "Shooter"
+            ],
+            "raiting": "8,2",
+            "developer": "GSC Game World",
+            "publisher": [
+                "THQ",
+                "GSC World Publishing",
+                "Deep Silver",
+                "cdp.pl" 
+            ]
+        },
+        {
+            "id": 6,
+            "title": "Dragon Age: Origins",
+            "year": "2009",
+            "genre": [
+                "Role-playing (RPG)"
+            ],
+            "raiting": "8,7",
+            "developer": "BioWare Edmonton",
+            "publisher": [
+                "Electronic Arts "
+            ]
+        },
+        {
+            "id": 7,
+            "title": "Space Rangers 2: Dominators",
+            "year": "2004",
+            "genre": [
+                "Arcade",
+                "Real Time Strategy (RTS)",
+                "Role-playing (RPG)",
+                "Simulator",
+                "Strategy",
+                "Turn-based strategy (TBS)" 
+            ],
+            "raiting": "9,1",
+            "developer": "Elemental Games",
+            "publisher": [
+                "1C",
+                "Excalibur Publishing",
+                "Cinemaware Marquee"
+            ]
+        },
+        {
+            "id": 8,
+            "title": "Heroes of Might and Magic III: The Restoration of Erathia",
+            "year": "1999",
+            "genre": [
+                "Role-playing (RPG)",
+                "Turn-based strategy (TBS)" 
+            ],
+            "raiting": "8,9",
+            "developer": "New World Computing",
+            "publisher": [
+                "The 3DO Company",
+                "Loki Software"
+            ]
+        },
+        {
+            "id": 9,
+            "title": "StarCraft II: Trilogy",
+            "year": "2015",
+            "genre": [
+                "Real Time Strategy (RTS)" 
+            ],
+            "raiting": "9,1",
+            "developer": "Blizzard Entertainment",
+            "publisher": [
+                "Blizzard Entertainment"
+            ]
+        },
+        {
+            "id": 10,
+            "title": "Control",
+            "year": "2019",
+            "genre": [
+                "Adventure",
+                "Shooter"  
+            ],
+            "raiting": "8,3",
+            "developer": "Remedy Entertainment",
+            "publisher": [
+                "505 Games"
+            ]
+        }
+
+    ]
+
+}
