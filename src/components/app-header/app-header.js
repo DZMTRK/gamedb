@@ -1,9 +1,9 @@
 import React from 'react';
 import './app-header.css';
 
-const AppHeader = ({toDo, done}) => {
+const AppHeader = () => {
   return (
-    <div className="app-header d-flex">
+    <div>
       <h1>My favorite computer games list</h1>
     </div>
   );
