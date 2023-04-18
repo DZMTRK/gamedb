@@ -1,5 +1,6 @@
 import * as React from 'react';
 import { DataGrid } from '@mui/x-data-grid';
+import { getGameData } from './get-game-data'
 
 const columns = [
     { field: 'id', headerName: 'ID', type: 'int', width: 70 },
@@ -10,19 +11,6 @@ const columns = [
     { field: 'developer', headerName: 'Developer', type: 'str', width: 90 },
     { field: 'publisher', headerName: 'Publisher', type: 'str', width: 90 },
   ];
-
-  const getGameData = async () => {
-    const urlToFetch = 'http://localhost:3002/game';
-    try {
-      let response = await fetch(urlToFetch);
-      if (response.ok) {
-        let jsonResponse = await response.json();
-        return jsonResponse;
-      };
-    } catch (error) {
-      console.log(error);
-    };
-  };
 
   const rows = 
   [
