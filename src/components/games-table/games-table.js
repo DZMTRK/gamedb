@@ -10,17 +10,25 @@ const columns = [
     { field: 'developer', headerName: 'Developer', type: 'str', width: 90 },
     { field: 'publisher', headerName: 'Publisher', type: 'str', width: 90 },
   ];
-  
-  const rows = [
-    { id: 1, lastName: 'Snow', firstName: 'Jon', age: 35 },
-    { id: 2, lastName: 'Lannister', firstName: 'Cersei', age: 42 },
-    { id: 3, lastName: 'Lannister', firstName: 'Jaime', age: 45 },
-    { id: 4, lastName: 'Stark', firstName: 'Arya', age: 16 },
-    { id: 5, lastName: 'Targaryen', firstName: 'Daenerys', age: null },
-    { id: 6, lastName: 'Melisandre', firstName: null, age: 150 },
-    { id: 7, lastName: 'Clifford', firstName: 'Ferrara', age: 44 },
-    { id: 8, lastName: 'Frances', firstName: 'Rossini', age: 36 },
-    { id: 9, lastName: 'Roxie', firstName: 'Harvey', age: 65 },
+
+  const getGameData = async () => {
+    const urlToFetch = 'http://localhost:3002/game';
+    try {
+      let response = await fetch(urlToFetch);
+      if (response.ok) {
+        let jsonResponse = await response.json();
+        return jsonResponse;
+      };
+    } catch (error) {
+      console.log(error);
+    };
+  };
+
+  const rows = 
+  [
+    { id: 1, title: 'demotest', year: '2023', genre: 'demotest' },
+    { id: 2, title: 'demotest', year: '2023', genre: 'demotest' },
+    { id: 3, title: 'demotest', year: '2023', genre: 'demotest' },
   ];
 
 function GamesTable() {
