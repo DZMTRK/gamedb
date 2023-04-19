@@ -1,14 +1,13 @@
-const getGameData = async () => {
+const getGameData = () => {
     const urlToFetch = 'http://localhost:3002/game';
-    try {
-      let response = await fetch(urlToFetch);
+    return fetch(urlToFetch).then((response)=>{
       if (response.ok) {
-        let jsonResponse = await response.json();
+        let jsonResponse = response.json();
         return jsonResponse;
       };
-    } catch (error) {
-      console.log(error);
-    };
+    }).catch((error)=>{
+        console.log(error);
+    })
   };
 
   export { getGameData };
