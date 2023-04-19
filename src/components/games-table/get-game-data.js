@@ -4,6 +4,7 @@ const getGameData = async () => {
       let response = await fetch(urlToFetch);
       if (response.ok) {
         let jsonResponse = await response.json();
+        return jsonResponse;
       };
     } catch (error) {
       console.log(error);

@@ -2,6 +2,8 @@ import * as React from 'react';
 import { DataGrid } from '@mui/x-data-grid';
 import { getGameData } from './get-game-data'
 
+console.log(getGameData());
+
 const columns = [
     { field: 'id', headerName: 'ID', type: 'int', width: 70 },
     { field: 'title', headerName: 'Title', type: 'str', width: 130 },
