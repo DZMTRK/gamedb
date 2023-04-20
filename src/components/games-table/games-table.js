@@ -1,23 +1,23 @@
 import React, { useState } from 'react';
 import { DataGrid } from '@mui/x-data-grid';
-import { getGameData } from './get-game-data'
+import { getGameData } from '../get-game-data'
 
 const columns = [
   { field: 'id', headerName: 'ID', type: 'int', width: 70 },
-  { field: 'title', headerName: 'Title', type: 'str', width: 130 },
-  { field: 'year', headerName: 'Year', type: 'int', width: 130 },
-  { field: 'genre', headerName: 'Genre', type: 'enum', width: 90 },
-  { field: 'raiting', headerName: 'Raiting', type: 'float', width: 90 },
-  { field: 'developer', headerName: 'Developer', type: 'str', width: 90 },
-  { field: 'publisher', headerName: 'Publisher', type: 'str', width: 90 },
+  { field: 'title', headerName: 'Title', type: 'str', width: 400 },
+  { field: 'year', headerName: 'Year', type: 'int', width: 70 },
+  { field: 'genre', headerName: 'Genre', type: 'enum', flex: 1 },
+  { field: 'raiting', headerName: 'Raiting', type: 'float', width: 70 },
+  { field: 'developer', headerName: 'Developer', type: 'str', flex: 1 },
+  { field: 'publisher', headerName: 'Publisher', type: 'str', flex: 1 },
 ];
 
 function GamesTable() {
   
-  const [rows, setRows] = useState([]);
+  const [rows, setState] = useState([]);
 
   getGameData().then((data) => {
-    setRows(data);
+    setState(data);
   });
   
   return (
