@@ -2,7 +2,7 @@ import React, { Component } from 'react';
 
 import AppHeader from '../app-header';
 import GamesTable from '../games-table';
-import AddButton from '../add-button';
+import TableButtons from '../table-buttons';
 
 export default class App extends Component {
 
@@ -14,7 +14,7 @@ export default class App extends Component {
         </header>
         <section>
           <GamesTable />
-          <AddButton />
+          <TableButtons />
         </section>
       </div>
     );

@@ -3,7 +3,7 @@ import Stack from '@mui/material/Stack';
 import Button from '@mui/material/Button';
 import DeleteIcon from '@mui/icons-material/Delete';
 
-const AddButton = () => {
+const TableButtons = () => {
     return (
         <Stack direction="row" spacing={2}>
             <Button variant="contained">+ Add Item</Button>
@@ -12,4 +12,4 @@ const AddButton = () => {
     )
 }
 
-export default AddButton;
+export default TableButtons;
