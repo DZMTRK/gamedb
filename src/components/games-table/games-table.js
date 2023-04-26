@@ -1,4 +1,4 @@
-import React, { useState } from 'react';
+import React, { useEffect, useState } from 'react';
 import { DataGrid } from '@mui/x-data-grid';
 import { getGameData } from '../get-game-data'
 
@@ -16,10 +16,12 @@ function GamesTable() {
   
   const [rows, setState] = useState([]);
 
-  getGameData().then((data) => {
-    setState(data);
-  });
-  
+  useEffect(() => {
+    getGameData().then((data) => {
+      setState(data);
+    });
+  }, [])
+
   return (
     <div>
       <DataGrid
