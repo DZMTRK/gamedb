@@ -13,11 +13,20 @@ const NewItemInput = () => {
     return (
         <form >
             <label for="title">Game Title</label>
-            <input id="title" type="text" placeholder="Game Name" onChange={(e) =>{setTitle(e.target.value);}}/>
+            <input id="title" type="text" 
+                placeholder="Game Name" 
+                onChange={(e) =>{setTitle(e.target.value);}}
+            />
+
             <label for="year">Year</label>
-            <input id="year" type="number" placeholder="1970" min="1970" max="2099" step="1" onChange={(e) =>{setYear(e.target.value)}}/>
+            <input id="year" type="number" 
+                placeholder="1970" min="1970" max="2099" step="1" 
+                onChange={(e) =>{setYear(e.target.value)}}/>
+
             <label for="genre">Genre</label>
-            <select name="genre" id="genre" onChange={(e) =>{setGenre(e.target.value)}}>
+            <select name="genre" id="genre" 
+                onChange={(e) =>{setGenre(e.target.value)}}>
+                    
                 <option value="">--Please choose an option--</option>
                 <option value="Arcade">Arcade</option>
                 <option value="Adventure">Adventure</option>
@@ -30,12 +39,20 @@ const NewItemInput = () => {
                 <option value="Strategy">Strategy</option>
                 <option value="Turn-based strategy (TBS)">Turn-based strategy (TBS)</option>
             </select>
+
             <label for="raiting">Raiting</label>
-            <input id="raiting" type="number" min="1" max="10" placeholder="1.0" step="0.1" onChange={(e) =>{setRaiting(e.target.value);}}/>
+            <input id="raiting" type="number" 
+                placeholder="1.0" min="1" max="10" step="0.1" 
+                onChange={(e) =>{setRaiting(e.target.value);}}/>
+
             <label for="developer">Developer</label>
-            <input id="developer" type="text" onChange={(e) =>{setDeveloper(e.target.value);}}/>
+            <input id="developer" type="text" 
+                onChange={(e) =>{setDeveloper(e.target.value);}}/>
+
             <label for="publisher">Publisher</label>
-            <input id="publisher" type="text" onChange={(e) =>{setPublisher(e.target.value);}}/>
+            <input id="publisher" type="text" 
+                onChange={(e) =>{setPublisher(e.target.value);}}/>
+                
             <div>
                 <input type="submit" value="ADD ITEM" />
             </div>
