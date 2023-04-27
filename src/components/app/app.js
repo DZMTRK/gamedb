@@ -2,7 +2,7 @@ import React, { Component } from 'react';
 
 import AppHeader from '../app-header';
 import GamesTable from '../games-table';
-import NewItemInput from '../new-item-input';
+
 
 export default class App extends Component {
 
@@ -14,7 +14,6 @@ export default class App extends Component {
         </header>
         <section>
           <GamesTable />
-          <NewItemInput />
         </section>
       </div>
     );

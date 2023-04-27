@@ -54,9 +54,9 @@ const NewItemInput = () => {
             <input id="publisher" type="text" 
                 onChange={(e) =>{setPublisher(e.target.value);}}/>
                 
-            <div>
-                <Button variant="contained">+ Add Item</Button>
-            </div>
+            
+            <Button variant="contained">+ Add Item</Button>
+            
         </form>
     )
 }

@@ -1,6 +1,7 @@
 import React, { useEffect, useState } from 'react';
 import { DataGrid } from '@mui/x-data-grid';
 import { getGameData } from '../get-game-data'
+import NewItemInput from '../new-item-input';
 
 const columns = [
   // { field: 'id', headerName: 'ID', type: 'int', width: 70 },
@@ -24,6 +25,7 @@ function GamesTable() {
 
   return (
     <div>
+      <NewItemInput />
       <DataGrid
         rows={rows}
         columns={columns}
