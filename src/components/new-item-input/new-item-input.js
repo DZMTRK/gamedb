@@ -1,4 +1,5 @@
 import React, { useEffect, useState } from "react";
+import Button from '@mui/material/Button';
 
 
 
@@ -54,7 +55,7 @@ const NewItemInput = () => {
                 onChange={(e) =>{setPublisher(e.target.value);}}/>
                 
             <div>
-                <input type="submit" value="ADD ITEM" />
+                <Button variant="contained">+ Add Item</Button>
             </div>
         </form>
     )
