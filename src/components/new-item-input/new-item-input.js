@@ -1,5 +1,4 @@
 import React, { useEffect, useState } from "react";
-import Button from '@mui/material/Button';
 
 
 
@@ -55,7 +54,7 @@ const NewItemInput = () => {
                 onChange={(e) =>{setPublisher(e.target.value.split(','));}}/>
                 
             
-            <Button variant="contained">+ Add Item</Button>
+            <button type="submit">+ADD</button>
             
         </form>
     )
