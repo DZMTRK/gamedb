@@ -11,16 +11,6 @@ const NewItemInput = ({onItemAdd}) => {
     const [developer, setDeveloper] = useState('');
     const [publisher, setPublisher] = useState([]);
 
-
-    const addElement = (item) => {
-        const requestOptions = {
-          method: 'POST',
-          headers: { 'Content-Type': 'application/json' },
-          body: JSON.stringify(item)
-        };
-        fetch('http://localhost:3002/game/', requestOptions);
-    };
-
     const onSubmit = (e) => {
         e.preventDefault();
         const newItem = {
@@ -31,7 +21,7 @@ const NewItemInput = ({onItemAdd}) => {
             developer,
             publisher,
         };
-        addElement(newItem);
+        onItemAdd(newItem);
     };
 
     return (

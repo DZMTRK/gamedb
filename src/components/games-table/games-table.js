@@ -3,6 +3,8 @@ import { DataGrid } from '@mui/x-data-grid';
 import { getGameData } from '../get-game-data'
 import NewItemInput from '../new-item-input';
 
+const url = 'http://localhost:3002/game/';
+
 const columns = [
   // { field: 'id', headerName: 'ID', type: 'int', width: 70 },
   { field: 'title', headerName: 'Title', type: 'str', flex: 3 },
@@ -23,9 +25,21 @@ function GamesTable() {
     });
   }, [])
 
+  const addElement = (item) => {
+    const requestOptions = {
+      method: 'POST',
+      headers: { 'Content-Type': 'application/json' },
+      body: JSON.stringify(item)
+    };
+    fetch(url, requestOptions)
+    .then(fetch(url))
+    .then((response)=> response.json())
+    .then((data) => setState([...rows, data]))
+  }
+
   return (
     <div>
-      <NewItemInput />
+      <NewItemInput onItemAdd = {addElement}/>
       <DataGrid
         rows={rows}
         columns={columns}
