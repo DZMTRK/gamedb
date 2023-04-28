@@ -1,8 +1,9 @@
-import React, { useEffect, useState } from "react";
+import React, {useState} from "react";
 
 
 
-const NewItemInput = () => {
+const NewItemInput = ({onItemAdd}) => {
+
     const [title, setTitle] = useState(''); 
     const [year, setYear] = useState(null);
     const [genre, setGenre] = useState ([]);
@@ -10,22 +11,48 @@ const NewItemInput = () => {
     const [developer, setDeveloper] = useState('');
     const [publisher, setPublisher] = useState([]);
 
+
+    const addElement = (item) => {
+        const requestOptions = {
+          method: 'POST',
+          headers: { 'Content-Type': 'application/json' },
+          body: JSON.stringify(item)
+        };
+        fetch('http://localhost:3002/game/', requestOptions);
+    };
+
+    const onSubmit = (e) => {
+        e.preventDefault();
+        const newItem = {
+            title,
+            year,
+            genre,
+            raiting,
+            developer,
+            publisher,
+        };
+        addElement(newItem);
+    };
+
     return (
-        <form action="http://localhost:3002/game/" method="POST">
+        <form onSubmit={onSubmit}>
             <label for="title">Game Title</label>
             <input id="title" type="text" 
                 placeholder="Game Name" 
+                required
                 onChange={(e) =>{setTitle(e.target.value);}}
             />
 
             <label for="year">Year</label>
-            <input id="year" type="number" 
-                placeholder="1970" min="1970" max="2099" step="1" 
+            <input id="year" type="number"
+                placeholder="1970" min="1970" max="2099" step="1"
+                required 
                 onChange={(e) =>{setYear(e.target.value)}}
             />
 
             <label for="genre">Genre</label>
             <select name="genre" id="genre"
+                required
                 onChange = {(e) => {setGenre([e.target.value]);}}>
                     
                 <option value="">--Please choose an option--</option>
@@ -43,23 +70,27 @@ const NewItemInput = () => {
 
             <label for="raiting">Raiting</label>
             <input id="raiting" type="number" 
-                placeholder="1.0" min="1" max="10" step="0.1" 
+                placeholder="1.0" min="1" max="10" step="0.1"
+                required 
                 onChange={(e) =>{setRaiting(e.target.value);}}
             />
 
             <label for="developer">Developer</label>
             <input id="developer" type="text" 
+                required
                 onChange={(e) =>{setDeveloper(e.target.value);}}
             />
 
             <label for="publisher">Publisher</label>
-            <input id="publisher" type="text" 
+            <input id="publisher" type="text"
+                required 
                 onChange={(e) =>{setPublisher(e.target.value.split(','));}}
             />
                 
             
-            <button type="submit">+ADD</button>
-            
+            <button type="submit" on>
+                +ADD
+            </button>
         </form>
     )
 }

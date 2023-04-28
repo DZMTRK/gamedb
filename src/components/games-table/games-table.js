@@ -23,10 +23,6 @@ function GamesTable() {
     });
   }, [])
 
-  const addElement = (newItem) => {
-    
-  }
-
   return (
     <div>
       <NewItemInput />
