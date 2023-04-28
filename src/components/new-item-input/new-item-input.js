@@ -8,10 +8,10 @@ const NewItemInput = () => {
     const [genre, setGenre] = useState ([]);
     const [raiting, setRaiting] = useState (null);
     const [developer, setDeveloper] = useState('');
-    const [publisher, setPublisher] = useState('');
+    const [publisher, setPublisher] = useState([]);
 
     return (
-        <form >
+        <form action="http://localhost:3002/game/" method="POST">
             <label for="title">Game Title</label>
             <input id="title" type="text" 
                 placeholder="Game Name" 
@@ -21,7 +21,8 @@ const NewItemInput = () => {
             <label for="year">Year</label>
             <input id="year" type="number" 
                 placeholder="1970" min="1970" max="2099" step="1" 
-                onChange={(e) =>{setYear(e.target.value)}}/>
+                onChange={(e) =>{setYear(e.target.value)}}
+            />
 
             <label for="genre">Genre</label>
             <select name="genre" id="genre"
@@ -43,15 +44,18 @@ const NewItemInput = () => {
             <label for="raiting">Raiting</label>
             <input id="raiting" type="number" 
                 placeholder="1.0" min="1" max="10" step="0.1" 
-                onChange={(e) =>{setRaiting(e.target.value);}}/>
+                onChange={(e) =>{setRaiting(e.target.value);}}
+            />
 
             <label for="developer">Developer</label>
             <input id="developer" type="text" 
-                onChange={(e) =>{setDeveloper(e.target.value);}}/>
+                onChange={(e) =>{setDeveloper(e.target.value);}}
+            />
 
             <label for="publisher">Publisher</label>
             <input id="publisher" type="text" 
-                onChange={(e) =>{setPublisher(e.target.value.split(','));}}/>
+                onChange={(e) =>{setPublisher(e.target.value.split(','));}}
+            />
                 
             
             <button type="submit">+ADD</button>
