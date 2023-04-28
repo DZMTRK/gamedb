@@ -25,8 +25,8 @@ const NewItemInput = () => {
                 onChange={(e) =>{setYear(e.target.value)}}/>
 
             <label for="genre">Genre</label>
-            <select name="genre" id="genre" 
-                onChange={(e) =>{setGenre(e.target.value)}}>
+            <select name="genre" id="genre"
+                onChange = {(e) => {setGenre([e.target.value]);}}>
                     
                 <option value="">--Please choose an option--</option>
                 <option value="Arcade">Arcade</option>
@@ -52,7 +52,7 @@ const NewItemInput = () => {
 
             <label for="publisher">Publisher</label>
             <input id="publisher" type="text" 
-                onChange={(e) =>{setPublisher(e.target.value);}}/>
+                onChange={(e) =>{setPublisher(e.target.value.split(','));}}/>
                 
             
             <Button variant="contained">+ Add Item</Button>
