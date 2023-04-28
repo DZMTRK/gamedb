@@ -72,7 +72,7 @@ const NewItemInput = ({onItemAdd}) => {
             />
 
             <label for="publisher">Publisher</label>
-            <input id="publisher" type="text"
+            <input id="publisher" type="text" placeholder="split inputs with commas"
                 required 
                 onChange={(e) =>{setPublisher(e.target.value.split(','));}}
             />
