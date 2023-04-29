@@ -18,6 +18,7 @@ const columns = [
 function GamesTable() {
   
   const [rows, setState] = useState([]);
+  const [rowSelectionModel, setRowSelectionModel] = useState([]);
 
   useEffect(() => {
     getGameData().then((data) => {
@@ -37,6 +38,14 @@ function GamesTable() {
     .then((data) => setState([...rows, data]))
   }
 
+  const deleteElement = () => {
+    const arr = [...rowSelectionModel];
+    arr.forEach(element => {
+      fetch(url+element, {method: 'DELETE'})
+      console.log(element);
+    });
+  }
+
   return (
     <div>
       <NewItemInput onItemAdd = {addElement}/>
@@ -48,7 +57,12 @@ function GamesTable() {
         rowsPerPageOptions={[5]}
         checkboxSelection 
         disableRowSelectionOnClick
+        onRowSelectionModelChange={(newRowSelectionModel) => {
+          setRowSelectionModel(newRowSelectionModel);
+        }}
+        rowSelectionModel={rowSelectionModel}
       />
+      <button onClick={deleteElement()}>DELETE ITEM</button>
     </div>
   );
 }
