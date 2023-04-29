@@ -46,6 +46,8 @@ function GamesTable() {
         autoHeight = {true}
         pageSize={5}
         rowsPerPageOptions={[5]}
+        checkboxSelection 
+        disableRowSelectionOnClick
       />
     </div>
   );
