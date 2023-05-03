@@ -39,11 +39,17 @@ function GamesTable() {
   }
 
   const deleteElement = () => {
-    const arr = [...rowSelectionModel];
+    const arr = [...rowSelectionModel]
+    let updatedRows = [...rows];
     arr.forEach(element => {
-      fetch(url+element, {method: 'DELETE'})
-      console.log(element);
+      fetch(url+element, {method: 'DELETE'});
+      updatedRows.forEach(row => {
+        if (row.id === element) {
+          updatedRows = [...updatedRows.slice(0,updatedRows.indexOf(row)),...updatedRows.slice(updatedRows.indexOf(row)+1)];
+        }
+      })
     });
+    setState(updatedRows);
   }
 
   return (
@@ -62,7 +68,7 @@ function GamesTable() {
         }}
         rowSelectionModel={rowSelectionModel}
       />
-      <button onClick={deleteElement()}>DELETE ITEM</button>
+      <button onClick={deleteElement}>DELETE ITEM</button>
     </div>
   );
 }
