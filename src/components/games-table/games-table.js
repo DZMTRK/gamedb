@@ -40,17 +40,16 @@ function GamesTable() {
 
   const deleteElement = () => {
     const arr = [...rowSelectionModel]
-    let updatedRows = [...rows];
-    arr.forEach(element => {
-      fetch(url+element, {method: 'DELETE'});
-      updatedRows.forEach(row => {
-        if (row.id === element) {
-          updatedRows = [...updatedRows.slice(0,updatedRows.indexOf(row)),...updatedRows.slice(updatedRows.indexOf(row)+1)];
-        }
-      })
-    });
-    setState(updatedRows);
-  }
+    arr.forEach( async (element) => {
+      let response = await fetch(url+element, {method: 'DELETE'});
+      if (response.ok) {
+        fetch(url)
+        .then(responseGET => responseGET.json())
+        .then(data => setState(data));
+      }
+    })
+  };
+  
 
   return (
     <div>
