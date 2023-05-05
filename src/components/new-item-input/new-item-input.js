@@ -30,7 +30,7 @@ const NewItemInput = ({onItemAdd}) => {
             <input id="title" type="text" 
                 placeholder="Game Name" 
                 required
-                onChange={(e) =>{setTitle(e.target.value);}}
+                onChange={(e) =>{setTitle(e.target.value.trim());}}
             />
 
             <label for="year">Year</label>
@@ -62,19 +62,19 @@ const NewItemInput = ({onItemAdd}) => {
             <input id="raiting" type="number" 
                 placeholder="1.0" min="1" max="10" step="0.1"
                 required 
-                onChange={(e) =>{setRaiting(e.target.value);}}
+                onChange={(e) =>{setRaiting(e.target.value.trim());}}
             />
 
             <label for="developer">Developer</label>
             <input id="developer" type="text" 
                 required
-                onChange={(e) =>{setDeveloper(e.target.value);}}
+                onChange={(e) =>{setDeveloper(e.target.value.trim());}}
             />
 
             <label for="publisher">Publisher</label>
             <input id="publisher" type="text" placeholder="split inputs with commas"
                 required 
-                onChange={(e) =>{setPublisher(e.target.value.split(','));}}
+                onChange={(e) =>{setPublisher(e.target.value.trim().split(','));}}
             />
                 
             
