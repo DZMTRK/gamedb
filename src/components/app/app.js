@@ -1,6 +1,5 @@
 import React, { Component } from 'react';
 
-import AppHeader from '../app-header';
 import GamesTable from '../games-table';
 
 
@@ -8,7 +7,7 @@ const App = () => {
     return (
       <div>
         <header>
-          <AppHeader />
+          <h1>My favorite computer games list</h1>
         </header>
         <section>
           <GamesTable />
