@@ -4,9 +4,7 @@ import AppHeader from '../app-header';
 import GamesTable from '../games-table';
 
 
-export default class App extends Component {
-
-  render() {
+const App = () => {
     return (
       <div>
         <header>
@@ -17,5 +15,6 @@ export default class App extends Component {
         </section>
       </div>
     );
-  };
 }
+
+export default App;
