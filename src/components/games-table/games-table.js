@@ -75,6 +75,7 @@ function GamesTable() {
           setRowSelectionModel(newRowSelectionModel);
         }}
         rowSelectionModel={rowSelectionModel}
+        editMode="row"
       />
       <button onClick={deleteElement}>DELETE ITEM</button>
       <Snackbar
