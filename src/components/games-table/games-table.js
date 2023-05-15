@@ -2,6 +2,8 @@ import React, { useEffect, useState } from 'react';
 import { DataGrid } from '@mui/x-data-grid';
 import { getGameData } from '../get-game-data'
 import NewItemInput from '../new-item-input';
+import Snackbar from '@mui/material/Snackbar';
+
 
 const url = 'http://localhost:3002/game/';
 
@@ -19,6 +21,8 @@ function GamesTable() {
   
   const [rows, setState] = useState([]);
   const [rowSelectionModel, setRowSelectionModel] = useState([]);
+  const [open, setOpen] = useState(false);
+  const [actionMessage, setMessage] = useState('');
 
   useEffect(() => {
     getGameData().then((data) => {
@@ -35,7 +39,9 @@ function GamesTable() {
     fetch(url, requestOptions)
     .then(fetch(url))
     .then((response)=> response.json())
-    .then((data) => setState([...rows, data]))
+    .then((data) => setState([...rows, data]));
+    setMessage('New item was added');
+    setOpen(true);
   }
 
   const deleteElement = () => {
@@ -48,9 +54,10 @@ function GamesTable() {
         .then(data => setState(data));
       }
     })
+    setMessage('Selected item(s) was(were) removed');
+    setOpen(true);
   };
   
-
   return (
     <div>
       <NewItemInput onItemAdd = {addElement}/>
@@ -68,6 +75,18 @@ function GamesTable() {
         rowSelectionModel={rowSelectionModel}
       />
       <button onClick={deleteElement}>DELETE ITEM</button>
+      <Snackbar
+        open = {open}
+        autoHideDuration = {2000}
+        onClose = { 
+          (event, reason) => {
+            if (reason === 'clickaway') {return}; 
+            setOpen(false);
+          }
+        }
+        message = {actionMessage}
+        anchorOrigin={{vertical:'bottom', horizontal:'right'}}
+      />
     </div>
   );
 }
