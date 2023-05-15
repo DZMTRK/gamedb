@@ -54,8 +54,10 @@ function GamesTable() {
         .then(data => setState(data));
       }
     })
-    setMessage('Selected item(s) was(were) removed');
-    setOpen(true);
+    if (arr.length > 0) {
+      setMessage('Selected item(s) was(were) removed');
+      setOpen(true);
+    }
   };
   
   return (
