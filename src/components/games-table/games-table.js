@@ -68,7 +68,9 @@ function GamesTable() {
   };
 
   const handleDialogOpen = () => {
-    setDialogState(true);
+    if (rowSelectionModel.length > 0) {
+      setDialogState(true);
+    }  
   };
 
   const handleDialogClose = () => {
@@ -101,7 +103,7 @@ function GamesTable() {
         rowSelectionModel={rowSelectionModel}
         editMode="row"
       />
-      <Button variant="outlined" onClick={handleDialogOpen}>DELETE ITEMS</Button>
+      <Button variant="outlined" color="error" onClick={handleDialogOpen}>DELETE ITEMS</Button>
 
       <Snackbar
         open = {open}

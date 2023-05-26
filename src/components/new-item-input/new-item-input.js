@@ -1,5 +1,5 @@
 import React, {useState} from "react";
-
+import Button from '@mui/material/Button';
 
 
 const NewItemInput = ({onItemAdd}) => {
@@ -78,9 +78,9 @@ const NewItemInput = ({onItemAdd}) => {
             />
                 
             
-            <button type="submit" on>
+            <Button type="submit" variant="outlined" color="success">
                 +ADD
-            </button>
+            </Button>
         </form>
     )
 }
