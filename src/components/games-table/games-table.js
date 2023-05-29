@@ -1,14 +1,10 @@
 import React, { useEffect, useState } from 'react';
+import DeleteDialog from '../delete-dialog';
 import { DataGrid } from '@mui/x-data-grid';
 import { getGameData } from '../get-game-data'
 import NewItemInput from '../new-item-input';
-import Button from '@mui/material/Button';
 import Snackbar from '@mui/material/Snackbar';
-import Dialog from '@mui/material/Dialog';
-import DialogActions from '@mui/material/DialogActions';
-import DialogContent from '@mui/material/DialogContent';
-import DialogContentText from '@mui/material/DialogContentText';
-import DialogTitle from '@mui/material/DialogTitle';
+import Button from '@mui/material/Button';
 
 
 const url = 'http://localhost:3002/game/';
@@ -28,8 +24,8 @@ function GamesTable() {
   const [rows, setState] = useState([]);
   const [rowSelectionModel, setRowSelectionModel] = useState([]);
   const [open, setOpen] = useState(false);
-  const [dialogState, setDialogState] = useState(false);
   const [actionMessage, setMessage] = useState('');
+  const [dialogState, setDialogState] = useState(false);
 
   useEffect(() => {
     getGameData().then((data) => {
@@ -103,8 +99,9 @@ function GamesTable() {
         rowSelectionModel={rowSelectionModel}
         editMode="row"
       />
-      <Button variant="outlined" color="error" onClick={handleDialogOpen}>DELETE ITEMS</Button>
-
+      <Button variant="outlined" color="error" onClick={handleDialogOpen}>
+        DELETE ITEMS
+      </Button>
       <Snackbar
         open = {open}
         autoHideDuration = {2000}
@@ -117,29 +114,12 @@ function GamesTable() {
         message = {actionMessage}
         anchorOrigin={{vertical:'bottom', horizontal:'right'}}
       />
-
-      <Dialog
-        open={dialogState}
-        onClose={handleDialogClose}
-        aria-labelledby="alert-dialog-title"
-        aria-describedby="alert-dialog-description"
-      >
-        <DialogTitle id="alert-dialog-title">
-          {"Do you want to delete selected items?"}
-        </DialogTitle>
-        <DialogContent>
-          <DialogContentText id="alert-dialog-description">
-          Do you really want to remove selected items from the list?
-          They will be removed immediately and won't be restored. 
-          </DialogContentText>
-        </DialogContent>
-        <DialogActions>
-          <Button onClick={handleDialogDisagree}>Disagree</Button>
-          <Button onClick={handleDialogAgree} autoFocus>
-            Agree
-          </Button>
-        </DialogActions>
-      </Dialog>
+      <DeleteDialog 
+        toggle={dialogState} 
+        handleDialogClose={handleDialogClose}
+        handleDialogDisagree={handleDialogDisagree}
+        handleDialogAgree={handleDialogAgree}
+      />     
     </div>
   );
 }
