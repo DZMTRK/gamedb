@@ -7,19 +7,7 @@ import Snackbar from '@mui/material/Snackbar';
 import Button from '@mui/material/Button';
 
 
-const url = 'http://localhost:3002/game/';
-
-const columns = [
-  // { field: 'id', headerName: 'ID', type: 'int', width: 70 },
-  { field: 'title', headerName: 'Title', type: 'str', flex: 3, editable: true },
-  { field: 'year', headerName: 'Year', type: 'int', flex: 1, editable: true },
-  { field: 'genre', headerName: 'Genre', type: 'enum', flex: 3, editable: true },
-  { field: 'raiting', headerName: 'Raiting', type: 'float', flex: 1, editable: true },
-  { field: 'developer', headerName: 'Developer', type: 'str', width: 200, editable: true },
-  { field: 'publisher', headerName: 'Publisher', type: 'str', flex: 1, editable: true },
-];
-
-function GamesTable() {
+const GamesTable = () => {
   
   const [rows, setState] = useState([]);
   const [rowSelectionModel, setRowSelectionModel] = useState([]);
@@ -63,6 +51,18 @@ function GamesTable() {
     }
   };
 
+  const processRowUpdate = (newRow) => {
+    fetch(url+newRow.id, {
+      method: "PUT",
+      headers: {
+        'Content-type': 'application/json'
+      },
+      body: JSON.stringify(newRow)
+    });
+    setMessage('The Item was modified');
+    setOpen(true);
+  }
+
   const handleDialogOpen = () => {
     if (rowSelectionModel.length > 0) {
       setDialogState(true);
@@ -81,7 +81,7 @@ function GamesTable() {
     setDialogState(false);
     deleteElement();
   };
-  
+
   return (
     <div>
       <NewItemInput onItemAdd = {addElement}/>
@@ -98,6 +98,9 @@ function GamesTable() {
         }}
         rowSelectionModel={rowSelectionModel}
         editMode="row"
+        rowModel ='server'
+        processRowUpdate={processRowUpdate}
+        onProcessRowUpdateError={(error) => console.log(error)}
       />
       <Button variant="outlined" color="error" onClick={handleDialogOpen}>
         DELETE ITEMS
@@ -123,5 +126,17 @@ function GamesTable() {
     </div>
   );
 }
+
+const url = 'http://localhost:3002/game/';
+
+const columns = [
+  // { field: 'id', headerName: 'ID', type: 'int', width: 70 },
+  { field: 'title', headerName: 'Title', type: 'str', flex: 3, editable: true },
+  { field: 'year', headerName: 'Year', type: 'int', flex: 1, editable: true },
+  { field: 'genre', headerName: 'Genre', type: 'enum', flex: 3, editable: true },
+  { field: 'raiting', headerName: 'Raiting', type: 'float', flex: 1, editable: true },
+  { field: 'developer', headerName: 'Developer', type: 'str', width: 200, editable: true },
+  { field: 'publisher', headerName: 'Publisher', type: 'str', flex: 1, editable: true },
+];
 
 export default GamesTable;
