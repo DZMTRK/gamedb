@@ -1,4 +1,4 @@
-import React, { useEffect, useState } from 'react';
+import React, { useEffect, useState, useCallback} from 'react';
 import DeleteDialog from '../delete-dialog';
 import { DataGrid } from '@mui/x-data-grid';
 import { getGameData } from '../get-game-data'
@@ -51,17 +51,21 @@ const GamesTable = () => {
     }
   };
 
-  const processRowUpdate = (newRow) => {
-    fetch(url+newRow.id, {
-      method: "PUT",
-      headers: {
-        'Content-type': 'application/json'
-      },
-      body: JSON.stringify(newRow)
-    });
-    setMessage('The Item was modified');
-    setOpen(true);
-  }
+  const mutateElement = useCallback(
+    async (newRow) => {
+      await fetch(url+newRow.id, {
+        method: "PUT",
+        headers: {
+          'Content-type': 'application/json'
+        },
+        body: JSON.stringify(newRow)
+      })
+      setMessage('The Item was modified');
+      setOpen(true);
+      return newRow;
+    },
+    []
+  )
 
   const handleDialogOpen = () => {
     if (rowSelectionModel.length > 0) {
@@ -98,8 +102,7 @@ const GamesTable = () => {
         }}
         rowSelectionModel={rowSelectionModel}
         editMode="row"
-        rowModel ='server'
-        processRowUpdate={processRowUpdate}
+        processRowUpdate={mutateElement}
         onProcessRowUpdateError={(error) => console.log(error)}
       />
       <Button variant="outlined" color="error" onClick={handleDialogOpen}>
