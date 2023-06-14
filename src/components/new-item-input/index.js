@@ -1,3 +1,3 @@
-import NewItemInput from "./new-item-input";
+import NewItemInput from './new-item-input'
 
-export default NewItemInput;
+export default NewItemInput

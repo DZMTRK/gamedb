@@ -1,3 +1,3 @@
-import { getGameData } from './get-game-data';
+import { getGameData } from './get-game-data'
 
-export { getGameData };
+export { getGameData }

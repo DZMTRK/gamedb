@@ -1,3 +1,3 @@
-import DeleteDialog from "./delete-dialog";
+import DeleteDialog from './delete-dialog'
 
-export default DeleteDialog;
+export default DeleteDialog

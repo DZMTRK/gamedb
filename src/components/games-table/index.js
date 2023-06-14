@@ -1,3 +1,3 @@
-import GamesTable from "./games-table";
+import GamesTable from './games-table'
 
-export default GamesTable;
+export default GamesTable
