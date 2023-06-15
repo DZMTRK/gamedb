@@ -1,12 +1,13 @@
 import React, { useCallback, useEffect, useState } from 'react'
 
 import Button from '@mui/material/Button'
-import Snackbar from '@mui/material/Snackbar'
 import { DataGrid } from '@mui/x-data-grid'
 
-import DeleteDialog from '../delete-dialog'
 import { getGameData } from '../get-game-data'
 import NewItemInput from '../new-item-input'
+
+const Snackbar = React.lazy(() => import('@mui/material/Snackbar'))
+const DeleteDialog = React.lazy(() => import('../delete-dialog'))
 
 const url = 'http://localhost:3002/game/'
 

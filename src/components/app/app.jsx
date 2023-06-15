@@ -1,6 +1,6 @@
-import React from 'react'
+import React, { Suspense } from 'react'
 
-import GamesTable from '../games-table'
+const GamesTable = React.lazy(() => import('../games-table'))
 
 
 function App() {
@@ -10,7 +10,9 @@ function App() {
         <h1>My favorite computer games list</h1>
       </header>
       <section>
-        <GamesTable />
+        <Suspense fallback={<div>LOADING TABLE DATA...</div>}>
+          <GamesTable />
+        </Suspense>
       </section>
     </div>
   )
