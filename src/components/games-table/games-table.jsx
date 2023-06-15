@@ -38,10 +38,8 @@ function GamesTable() {
       body: JSON.stringify(item),
     }
     fetch(url, requestOptions)
-      .then(getGameData(url, setState))
-      // .then(data => setState([...rows, data]))
-    setMessage('New item was added')
-    setOpen(true)
+      .then(() => getGameData(url, setState))
+      .then(setMessage('New item was added'), setOpen(true))
   }, [])
 
   const deleteElement = useCallback(() => {
@@ -49,9 +47,7 @@ function GamesTable() {
     arr.forEach(async element => {
       const response = await fetch(url + element, { method: 'DELETE' })
       if (response.ok) {
-        fetch(url)
-          .then(responseGET => responseGET.json())
-          .then(data => setState(data))
+        getGameData(url, setState)
       }
     })
     if (arr.length > 0) {
