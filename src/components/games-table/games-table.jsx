@@ -2,6 +2,7 @@ import React, { useCallback, useEffect, useState } from 'react'
 
 import Button from '@mui/material/Button'
 import { DataGrid } from '@mui/x-data-grid'
+import { useNavigate } from 'react-router-dom'
 
 import { getGameData } from '../get-game-data'
 import NewItemInput from '../new-item-input'
@@ -27,10 +28,12 @@ function GamesTable() {
   const [open, setOpen] = useState(false)
   const [actionMessage, setMessage] = useState('')
   const [dialogState, setDialogState] = useState(false)
+  const navigate = useNavigate()
 
   useEffect(() => {
     getGameData(url, setState)
-  }, [])
+      .catch(navigate('/404'))
+  }, [navigate])
 
   const addElement = useCallback(item => {
     const requestOptions = {
