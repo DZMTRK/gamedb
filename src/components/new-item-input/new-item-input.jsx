@@ -24,6 +24,13 @@ function NewItemInput({ onItemAdd }) {
     onItemAdd(newItem)
   }, [developer, genre, onItemAdd, publisher, raiting, title, year])
 
+  const handleTitleInput = useCallback(e => { setTitle(e.target.value.trim()) }, [])
+  const handleYearInput = useCallback(e => { setYear(e.target.value) }, [])
+  const handleGenreInput = useCallback(e => { setGenre([e.target.value]) }, [])
+  const handleRaitingInput = useCallback(e => { setRaiting(e.target.value.trim()) }, [])
+  const handleDeveloperInput = useCallback(e => { setDeveloper(e.target.value.trim()) }, [])
+  const handlePublisherInput = useCallback(e => { setPublisher(e.target.value.trim().split(',')) }, [])
+
   return (
     <form onSubmit={onSubmit}>
       <label htmlFor="title">
@@ -33,7 +40,7 @@ function NewItemInput({ onItemAdd }) {
           type="text"
           placeholder="Game Name"
           required
-          onChange={useCallback(e => { setTitle(e.target.value.trim()) }, [])}
+          onChange={handleTitleInput}
         />
       </label>
 
@@ -47,7 +54,7 @@ function NewItemInput({ onItemAdd }) {
           max="2099"
           step="1"
           required
-          onChange={useCallback(e => { setYear(e.target.value) }, [])}
+          onChange={handleYearInput}
         />
       </label>
 
@@ -57,7 +64,7 @@ function NewItemInput({ onItemAdd }) {
           name="genre"
           id="genre"
           required
-          onChange={useCallback(e => { setGenre([e.target.value]) }, [])}
+          onChange={handleGenreInput}
         >
 
           <option value="">--Please choose an option--</option>
@@ -84,7 +91,7 @@ function NewItemInput({ onItemAdd }) {
           max="10"
           step="0.1"
           required
-          onChange={useCallback(e => { setRaiting(e.target.value.trim()) }, [])}
+          onChange={handleRaitingInput}
         />
       </label>
 
@@ -94,7 +101,7 @@ function NewItemInput({ onItemAdd }) {
           id="developer"
           type="text"
           required
-          onChange={useCallback(e => { setDeveloper(e.target.value.trim()) }, [])}
+          onChange={handleDeveloperInput}
         />
       </label>
 
@@ -105,7 +112,7 @@ function NewItemInput({ onItemAdd }) {
           type="text"
           placeholder="split inputs with commas"
           required
-          onChange={useCallback(e => { setPublisher(e.target.value.trim().split(',')) }, [])}
+          onChange={handlePublisherInput}
         />
       </label>
 

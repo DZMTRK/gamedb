@@ -7,13 +7,15 @@ import Page404 from '../pages/page404'
 const GamesTable = React.lazy(() => import('../games-table'))
 
 function App() {
+  const rootPath = '/'
+  const path404 = '/404'
   return (
     <Router>
       <div>
         <Routes>
-          <Route path="/404" element={<Page404 />} />
+          <Route path={path404} element={<Page404 />} />
           <Route
-            path="/"
+            path={rootPath}
             element={
               <div>
                 <header>

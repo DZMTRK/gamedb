@@ -13,7 +13,6 @@ const DeleteDialog = React.lazy(() => import('../delete-dialog'))
 const url = 'http://localhost:3002/game/'
 
 const columns = [
-  // { field: 'id', headerName: 'ID', type: 'int', width: 70 },
   { field: 'title', headerName: 'Title', type: 'str', flex: 3, editable: true },
   { field: 'year', headerName: 'Year', type: 'int', flex: 1, editable: true },
   { field: 'genre', headerName: 'Genre', type: 'enum', flex: 3, editable: true },
@@ -29,6 +28,8 @@ function GamesTable() {
   const [actionMessage, setMessage] = useState('')
   const [dialogState, setDialogState] = useState(false)
   const navigate = useNavigate()
+  const snackbarHideDuration = 2000
+  const snackbarPosition = { vertical: 'bottom', horizontal: 'right' }
 
   useEffect(() => {
     getGameData(url, setState, navigate)
@@ -75,6 +76,8 @@ function GamesTable() {
     [],
   )
 
+  const onProcessRowUpdateError = useCallback(error => console.error('Something went wrong', error), [])
+
   const onRowSelectionModelChange = useCallback(newRowSelectionModel => {
     setRowSelectionModel(newRowSelectionModel)
     return rowSelectionModel
@@ -111,25 +114,23 @@ function GamesTable() {
         rows={rows}
         columns={columns}
         autoHeight
-        pageSize={5}
-        rowsPerPageOptions={[5]}
         checkboxSelection
         disableRowSelectionOnClick
         onRowSelectionModelChange={onRowSelectionModelChange}
         rowSelectionModel={rowSelectionModel}
         editMode="row"
         processRowUpdate={mutateElement}
-        onProcessRowUpdateError={useCallback(error => console.error('Something went wrong'), [])}
+        onProcessRowUpdateError={onProcessRowUpdateError}
       />
       <Button variant="outlined" color="error" onClick={handleDialogOpen}>
         DELETE ITEMS
       </Button>
       <Snackbar
         open={open}
-        autoHideDuration={2000}
+        autoHideDuration={snackbarHideDuration}
         onClose={handleSnackbarClose}
         message={actionMessage}
-        anchorOrigin={{ vertical: 'bottom', horizontal: 'right' }}
+        anchorOrigin={snackbarPosition}
       />
       <DeleteDialog
         toggle={dialogState}
