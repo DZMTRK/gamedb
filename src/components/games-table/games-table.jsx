@@ -31,8 +31,7 @@ function GamesTable() {
   const navigate = useNavigate()
 
   useEffect(() => {
-    getGameData(url, setState)
-      .catch(navigate('/404'))
+    getGameData(url, setState, navigate)
   }, [navigate])
 
   const addElement = useCallback(item => {
