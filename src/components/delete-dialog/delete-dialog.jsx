@@ -6,8 +6,10 @@ import DialogActions from '@mui/material/DialogActions'
 import DialogContent from '@mui/material/DialogContent'
 import DialogContentText from '@mui/material/DialogContentText'
 import DialogTitle from '@mui/material/DialogTitle'
+import { useTranslation } from 'react-i18next'
 
 function DeleteDialog({ toggle, handleDialogClose, handleDialogDisagree, handleDialogAgree }) {
+  const { t } = useTranslation()
   return (
     <Dialog
       open={toggle}
@@ -16,20 +18,19 @@ function DeleteDialog({ toggle, handleDialogClose, handleDialogDisagree, handleD
       aria-describedby="alert-dialog-description"
     >
       <DialogTitle id="alert-dialog-title">
-        Do you want to delete selected items?
+        {t('description.deleteDialogHeader')}
       </DialogTitle>
       <DialogContent>
         <DialogContentText id="alert-dialog-description">
-          Do you really want to remove selected items from the list?
-          They will be removed immediately and will not be restored.
+          {t('description.deleteDialogMessage')}
         </DialogContentText>
       </DialogContent>
       <DialogActions>
         <Button onClick={handleDialogDisagree}>
-          Disagree
+          {t('description.deleteDialogDisagree')}
         </Button>
         <Button onClick={handleDialogAgree} autoFocus>
-          Agree
+          {t('description.deleteDialogAgree')}
         </Button>
       </DialogActions>
     </Dialog>

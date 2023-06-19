@@ -70,16 +70,16 @@ function NewItemInput({ onItemAdd }) {
         >
 
           <option value="">{t('description.genrePlaceholder')}</option>
-          <option value="Arcade">Arcade</option>
-          <option value="Adventure">Adventure</option>
-          <option value="Fighting">Fighting</option>
-          <option value="Racing">Racing</option>
-          <option value="Real Time Strategy (RTS)">Real Time Strategy (RTS)</option>
-          <option value="Role-playing (RPG)">Role-playing (RPG)</option>
-          <option value="Shooter">Shooter</option>
-          <option value="Simulator">Simulator</option>
-          <option value="Strategy">Strategy</option>
-          <option value="Turn-based strategy (TBS)">Turn-based strategy (TBS)</option>
+          <option value="Arcade">{t('description.genreArcade')}</option>
+          <option value="Adventure">{t('description.genreAdventure')}</option>
+          <option value="Fighting">{t('description.genreFighting')}</option>
+          <option value="Racing">{t('description.genreRacing')}</option>
+          <option value="Real Time Strategy (RTS)">{t('description.genreRTS')}</option>
+          <option value="Role-playing (RPG)">{t('description.genreRPG')}</option>
+          <option value="Shooter">{t('description.genreShooter')}</option>
+          <option value="Simulator">{t('description.genreSimulator')}</option>
+          <option value="Strategy">{t('description.genreStrategy')}</option>
+          <option value="Turn-based strategy (TBS)">{t('description.genreTBS')}</option>
         </select>
       </label>
 

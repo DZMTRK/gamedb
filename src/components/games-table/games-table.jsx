@@ -28,10 +28,11 @@ function GamesTable() {
   const [open, setOpen] = useState(false)
   const [actionMessage, setMessage] = useState('')
   const [dialogState, setDialogState] = useState(false)
+  const { t } = useTranslation()
   const navigate = useNavigate()
   const snackbarHideDuration = 2000
   const snackbarPosition = { vertical: 'bottom', horizontal: 'right' }
-  const { t } = useTranslation()
+
 
   useEffect(() => {
     getGameData(url, setState, navigate)
@@ -45,8 +46,8 @@ function GamesTable() {
     }
     fetch(url, requestOptions)
       .then(() => getGameData(url, setState))
-      .then(setMessage('New item was added'), setOpen(true))
-  }, [])
+      .then(setMessage(<p>{t('description.newItemMessage')}</p>), setOpen(true))
+  }, [t])
 
   const deleteElement = useCallback(() => {
     const arr = [...rowSelectionModel]
@@ -57,10 +58,10 @@ function GamesTable() {
       }
     })
     if (arr.length > 0) {
-      setMessage('Selected item(s) was(were) removed')
+      setMessage(<p>{t('description.deleteItemMessage')}</p>)
       setOpen(true)
     }
-  }, [rowSelectionModel])
+  }, [rowSelectionModel, t])
 
   const mutateElement = useCallback(
     async newRow => {
@@ -71,11 +72,11 @@ function GamesTable() {
         },
         body: JSON.stringify(newRow),
       })
-      setMessage('The Item was modified')
+      setMessage(<p>{t('description.mutateItemMessage')}</p>)
       setOpen(true)
       return newRow
     },
-    [],
+    [t],
   )
 
   const onProcessRowUpdateError = useCallback(error => console.error('Something went wrong', error), [])
