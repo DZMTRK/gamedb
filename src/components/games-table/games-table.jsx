@@ -2,6 +2,7 @@ import React, { useCallback, useEffect, useState } from 'react'
 
 import Button from '@mui/material/Button'
 import { DataGrid } from '@mui/x-data-grid'
+import { useTranslation } from 'react-i18next'
 import { useNavigate } from 'react-router-dom'
 
 import { getGameData } from '../get-game-data'
@@ -30,6 +31,7 @@ function GamesTable() {
   const navigate = useNavigate()
   const snackbarHideDuration = 2000
   const snackbarPosition = { vertical: 'bottom', horizontal: 'right' }
+  const { t } = useTranslation()
 
   useEffect(() => {
     getGameData(url, setState, navigate)
@@ -123,7 +125,7 @@ function GamesTable() {
         onProcessRowUpdateError={onProcessRowUpdateError}
       />
       <Button variant="outlined" color="error" onClick={handleDialogOpen}>
-        DELETE ITEMS
+        {t('description.buttonDelete')}
       </Button>
       <Snackbar
         open={open}

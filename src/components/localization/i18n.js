@@ -19,7 +19,42 @@ i18n
     resources: {
       en: {
         translation: {
-          // here we will place our translations...
+          description: {
+            h1: 'FAVORITE COMPUTER GAMES LIST',
+            loading: 'Please wait. Loading data...',
+            gameTitleInput: 'Game Title',
+            gameTitlePlaceholder: 'Game Name',
+            yearInput: 'Year',
+            genreInput: 'Genre',
+            genrePlaceholder: '--Please choose an option--',
+            raitingInput: 'Raiting',
+            developerInput: 'Developer',
+            developerPlaceholder: 'Developer',
+            publisherInput: 'Publisher',
+            publisherPlaceholder: 'split inputs with commas',
+            buttonAdd: '+ADD',
+            buttonDelete: 'DELETE ITEMS',
+          },
+        },
+      },
+      ru: {
+        translation: {
+          description: {
+            h1: 'СПИСОК ЛЮБИМЫХ КОМПЬЮТЕРНЫХ ИГР',
+            loading: 'Пожалуйста подождите. Загрузка данных...',
+            gameTitleInput: 'Название',
+            gameTitlePlaceholder: 'Игра',
+            yearInput: 'Год',
+            genreInput: 'Жанр',
+            genrePlaceholder: '--Выбор жанра--',
+            raitingInput: 'Рейтинг',
+            developerInput: 'Разработчик',
+            developerPlaceholder: 'Разработчик',
+            publisherInput: 'Издатель',
+            publisherPlaceholder: 'если несколько - через запятые',
+            buttonAdd: '+ВВОД',
+            buttonDelete: 'УДАЛИТЬ',
+          },
         },
       },
     },

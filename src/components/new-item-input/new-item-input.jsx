@@ -1,6 +1,7 @@
 import React, { useCallback, useState } from 'react'
 
 import Button from '@mui/material/Button'
+import { useTranslation } from 'react-i18next'
 
 
 function NewItemInput({ onItemAdd }) {
@@ -10,6 +11,7 @@ function NewItemInput({ onItemAdd }) {
   const [raiting, setRaiting] = useState(null)
   const [developer, setDeveloper] = useState('')
   const [publisher, setPublisher] = useState([])
+  const { t } = useTranslation()
 
   const onSubmit = useCallback(e => {
     e.preventDefault()
@@ -34,18 +36,18 @@ function NewItemInput({ onItemAdd }) {
   return (
     <form onSubmit={onSubmit}>
       <label htmlFor="title">
-        Game Title
+        {t('description.gameTitleInput')}
         <input
           id="title"
           type="text"
-          placeholder="Game Name"
+          placeholder={t('description.gameTitlePlaceholder')}
           required
           onChange={handleTitleInput}
         />
       </label>
 
       <label htmlFor="year">
-        Year
+        {t('description.yearInput')}
         <input
           id="year"
           type="number"
@@ -59,7 +61,7 @@ function NewItemInput({ onItemAdd }) {
       </label>
 
       <label htmlFor="genre">
-        Genre
+        {t('description.genreInput')}
         <select
           name="genre"
           id="genre"
@@ -67,7 +69,7 @@ function NewItemInput({ onItemAdd }) {
           onChange={handleGenreInput}
         >
 
-          <option value="">--Please choose an option--</option>
+          <option value="">{t('description.genrePlaceholder')}</option>
           <option value="Arcade">Arcade</option>
           <option value="Adventure">Adventure</option>
           <option value="Fighting">Fighting</option>
@@ -82,7 +84,7 @@ function NewItemInput({ onItemAdd }) {
       </label>
 
       <label htmlFor="raiting">
-        Raiting
+        {t('description.raitingInput')}
         <input
           id="raiting"
           type="number"
@@ -96,21 +98,22 @@ function NewItemInput({ onItemAdd }) {
       </label>
 
       <label htmlFor="developer">
-        Developer
+        {t('description.developerInput')}
         <input
           id="developer"
           type="text"
+          placeholder={t('description.developerPlaceholder')}
           required
           onChange={handleDeveloperInput}
         />
       </label>
 
       <label htmlFor="publisher">
-        Publisher
+        {t('description.publisherInput')}
         <input
           id="publisher"
           type="text"
-          placeholder="split inputs with commas"
+          placeholder={t('description.publisherPlaceholder')}
           required
           onChange={handlePublisherInput}
         />
@@ -118,7 +121,7 @@ function NewItemInput({ onItemAdd }) {
 
 
       <Button type="submit" variant="outlined" color="success">
-        +ADD
+        {t('description.buttonAdd')}
       </Button>
     </form>
   )
