@@ -4,6 +4,8 @@ import ReactDOM from 'react-dom/client'
 
 import App from './components/app'
 
+import './components/localization/i18n'
+
 
 const root = ReactDOM.createRoot(document.getElementById('root'))
 
