@@ -1,10 +1,11 @@
-const getGameData = (urlToFetch, setData, navigate) => fetch(urlToFetch)
+import { useNavigate } from 'react-router-dom'
+
+const getGameData = navigate => fetch('http://localhost:3002/game/')
   .catch(response => {
     if (!response.ok) {
-      navigate('/404')
+      useNavigate('/404')
     }
   })
   .then(response => response.json())
-  .then(data => setData(data))
 
 export { getGameData }

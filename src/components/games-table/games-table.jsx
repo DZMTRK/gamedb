@@ -3,8 +3,9 @@ import React, { useCallback, useEffect, useState } from 'react'
 import Button from '@mui/material/Button'
 import { DataGrid } from '@mui/x-data-grid'
 import { useTranslation } from 'react-i18next'
-import { useNavigate } from 'react-router-dom'
+import { useDispatch, useSelector } from 'react-redux'
 
+import * as actions from '../../actions'
 import { getGameData } from '../get-game-data'
 import NewItemInput from '../new-item-input'
 
@@ -23,20 +24,24 @@ const columns = [
 ]
 
 function GamesTable() {
-  const [rows, setState] = useState([])
   const [rowSelectionModel, setRowSelectionModel] = useState([])
   const [open, setOpen] = useState(false)
   const [actionMessage, setMessage] = useState('')
   const [dialogState, setDialogState] = useState(false)
   const { t } = useTranslation()
-  const navigate = useNavigate()
+  const dispatch = useDispatch()
   const snackbarHideDuration = 2000
   const snackbarPosition = { vertical: 'bottom', horizontal: 'right' }
+  const getData = useCallback(() => getGameData().then(data => dispatch(actions.getData(data))), [dispatch])
 
 
-  useEffect(() => {
-    getGameData(url, setState, navigate)
-  }, [navigate])
+  const selector = state => state.gametable.gametable
+  const data = useSelector(selector)
+
+
+  useEffect(
+    getData, [getData],
+  )
 
   const addElement = useCallback(item => {
     const requestOptions = {
@@ -45,23 +50,23 @@ function GamesTable() {
       body: JSON.stringify(item),
     }
     fetch(url, requestOptions)
-      .then(() => getGameData(url, setState))
+      .then(() => getData())
       .then(setMessage(<p>{t('description.newItemMessage')}</p>), setOpen(true))
-  }, [t])
+  }, [getData, t])
 
   const deleteElement = useCallback(() => {
     const arr = [...rowSelectionModel]
     arr.forEach(async element => {
       const response = await fetch(url + element, { method: 'DELETE' })
       if (response.ok) {
-        getGameData(url, setState)
+        getData()
       }
     })
     if (arr.length > 0) {
       setMessage(<p>{t('description.deleteItemMessage')}</p>)
       setOpen(true)
     }
-  }, [rowSelectionModel, t])
+  }, [getData, rowSelectionModel, t])
 
   const mutateElement = useCallback(
     async newRow => {
@@ -114,7 +119,7 @@ function GamesTable() {
     <div>
       <NewItemInput onItemAdd={addElement} />
       <DataGrid
-        rows={rows}
+        rows={data}
         columns={columns}
         autoHeight
         checkboxSelection

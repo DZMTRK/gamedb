@@ -5,14 +5,14 @@ import { Provider } from 'react-redux'
 import { legacy_createStore as createStore } from 'redux'
 
 import App from './components/app'
-import reducer from './reducer'
+import rootReducer from './reducers/rootReducer'
 
 import './components/localization/i18n'
 
 
 const root = ReactDOM.createRoot(document.getElementById('root'))
 
-const store = createStore(reducer)
+const store = createStore(rootReducer)
 
 root.render(
   <Provider store={store}>
