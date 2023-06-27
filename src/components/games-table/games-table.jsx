@@ -5,6 +5,7 @@ import { DataGrid } from '@mui/x-data-grid'
 import { useTranslation } from 'react-i18next'
 import { useDispatch, useSelector } from 'react-redux'
 
+import { tableData } from '../../reducers/selector'
 import deleteElementFromTable from '../../service/deleteElement'
 import getTableData from '../../service/getTableData'
 import mutateElement from '../../service/mutateElement'
@@ -24,8 +25,6 @@ const columns = [
 const snackbarHideDuration = 2000
 const snackbarPosition = { vertical: 'bottom', horizontal: 'right' }
 
-const dataSelector = state => state.gametable.gametable
-
 function GamesTable() {
   const { t } = useTranslation()
   const dispatch = useDispatch()
@@ -35,7 +34,7 @@ function GamesTable() {
   // const [actionMessage, setMessage] = useState('')
   const [dialogState, setDialogState] = useState(false)
 
-  const data = useSelector(dataSelector)
+  const data = useSelector(tableData)
 
 
   useEffect(
