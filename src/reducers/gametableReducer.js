@@ -9,6 +9,10 @@ const gametableReducer = (state = initState, action) => {
       return {
         gametable: action.payload,
       }
+    case 'ADD_DATA':
+      return {
+        gametable: [...state],
+      }
     default:
       return state
   }

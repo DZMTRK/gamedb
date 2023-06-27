@@ -6,7 +6,8 @@ import { useTranslation } from 'react-i18next'
 import { useDispatch, useSelector } from 'react-redux'
 
 import * as actions from '../../actions'
-import { getGameData } from '../get-game-data'
+import { getGameData } from '../../api/API'
+import deleteElementFromTable from '../../service/delete'
 import NewItemInput from '../new-item-input'
 
 const Snackbar = React.lazy(() => import('@mui/material/Snackbar'))
@@ -22,51 +23,56 @@ const columns = [
   { field: 'developer', headerName: 'Developer', type: 'str', width: 200, editable: true },
   { field: 'publisher', headerName: 'Publisher', type: 'str', flex: 1, editable: true },
 ]
+const snackbarHideDuration = 2000
+const snackbarPosition = { vertical: 'bottom', horizontal: 'right' }
+
+const getTableData = state => state.gametable.gametable
 
 function GamesTable() {
+  const { t } = useTranslation()
+  const dispatch = useDispatch()
+
   const [rowSelectionModel, setRowSelectionModel] = useState([])
   const [open, setOpen] = useState(false)
   const [actionMessage, setMessage] = useState('')
   const [dialogState, setDialogState] = useState(false)
-  const { t } = useTranslation()
-  const dispatch = useDispatch()
-  const snackbarHideDuration = 2000
-  const snackbarPosition = { vertical: 'bottom', horizontal: 'right' }
+
   const getData = useCallback(() => getGameData().then(data => dispatch(actions.getData(data))), [dispatch])
+  // const addElement = useCallback(item => dispatch(addElementToTable(item)).then(data => {
 
+  // }), [dispatch])
 
-  const selector = state => state.gametable.gametable
-  const data = useSelector(selector)
+  const data = useSelector(getTableData)
 
 
   useEffect(
     getData, [getData],
   )
 
-  const addElement = useCallback(item => {
-    const requestOptions = {
-      method: 'POST',
-      headers: { 'Content-Type': 'application/json' },
-      body: JSON.stringify(item),
-    }
-    fetch(url, requestOptions)
-      .then(() => getData())
-      .then(setMessage(<p>{t('description.newItemMessage')}</p>), setOpen(true))
-  }, [getData, t])
+  // const addElement = useCallback(item => {
+  //   const requestOptions = {
+  //     method: 'POST',
+  //     headers: { 'Content-Type': 'application/json' },
+  //     body: JSON.stringify(item),
+  //   }
+  //   fetch(url, requestOptions)
+  //     .then(() => getData())
+  //     .then(setMessage(<p>{t('description.newItemMessage')}</p>), setOpen(true))
+  // }, [getData, t])
 
-  const deleteElement = useCallback(() => {
-    const arr = [...rowSelectionModel]
-    arr.forEach(async element => {
-      const response = await fetch(url + element, { method: 'DELETE' })
-      if (response.ok) {
-        getData()
-      }
-    })
-    if (arr.length > 0) {
-      setMessage(<p>{t('description.deleteItemMessage')}</p>)
-      setOpen(true)
-    }
-  }, [getData, rowSelectionModel, t])
+  // const deleteElement = useCallback(() => {
+  //   const arr = [...rowSelectionModel]
+  //   arr.forEach(async element => {
+  //     const response = await fetch(url + element, { method: 'DELETE' })
+  //     if (response.ok) {
+  //       getData()
+  //     }
+  //   })
+  //   if (arr.length > 0) {
+  //     setMessage(<p>{t('description.deleteItemMessage')}</p>)
+  //     setOpen(true)
+  //   }
+  // }, [getData, rowSelectionModel, t])
 
   const mutateElement = useCallback(
     async newRow => {
@@ -112,12 +118,12 @@ function GamesTable() {
 
   const handleDialogAgree = useCallback(() => {
     setDialogState(false)
-    deleteElement()
-  }, [deleteElement])
+    deleteElementFromTable(rowSelectionModel, dispatch)
+  }, [dispatch, rowSelectionModel])
 
   return (
     <div>
-      <NewItemInput onItemAdd={addElement} />
+      <NewItemInput />
       <DataGrid
         rows={data}
         columns={columns}

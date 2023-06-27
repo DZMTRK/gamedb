@@ -2,6 +2,9 @@ import React, { useCallback, useState } from 'react'
 
 import Button from '@mui/material/Button'
 import { useTranslation } from 'react-i18next'
+import { useDispatch } from 'react-redux'
+
+import addElementToTable from '../../service/add'
 
 
 function NewItemInput({ onItemAdd }) {
@@ -12,10 +15,11 @@ function NewItemInput({ onItemAdd }) {
   const [developer, setDeveloper] = useState('')
   const [publisher, setPublisher] = useState([])
   const { t } = useTranslation()
+  const dispatch = useDispatch()
 
   const onSubmit = useCallback(e => {
     e.preventDefault()
-    const newItem = {
+    const item = {
       title,
       year,
       genre,
@@ -23,8 +27,8 @@ function NewItemInput({ onItemAdd }) {
       developer,
       publisher,
     }
-    onItemAdd(newItem)
-  }, [developer, genre, onItemAdd, publisher, raiting, title, year])
+    addElementToTable(item, dispatch)
+  }, [title, year, genre, raiting, developer, publisher, dispatch])
 
   const handleTitleInput = useCallback(e => { setTitle(e.target.value.trim()) }, [])
   const handleYearInput = useCallback(e => { setYear(e.target.value) }, [])
