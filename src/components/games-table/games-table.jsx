@@ -7,7 +7,7 @@ import { useDispatch, useSelector } from 'react-redux'
 
 import * as actions from '../../actions'
 import { getGameData } from '../../api/API'
-import deleteElementFromTable from '../../service/delete'
+import deleteElementFromTable from '../../service/deleteElement'
 import NewItemInput from '../new-item-input'
 
 const Snackbar = React.lazy(() => import('@mui/material/Snackbar'))

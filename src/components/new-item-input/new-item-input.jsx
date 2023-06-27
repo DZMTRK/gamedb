@@ -4,7 +4,7 @@ import Button from '@mui/material/Button'
 import { useTranslation } from 'react-i18next'
 import { useDispatch } from 'react-redux'
 
-import addElementToTable from '../../service/add'
+import addElementToTable from '../../service/addElement'
 
 
 function NewItemInput({ onItemAdd }) {
