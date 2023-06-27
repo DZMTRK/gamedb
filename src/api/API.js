@@ -32,3 +32,14 @@ const deleteElement = item => {
 }
 
 export { deleteElement }
+
+const editElement = item => {
+  const requestOptions = {
+    method: 'PUT',
+    headers: { 'Content-type': 'application/json' },
+    body: JSON.stringify(item),
+  }
+  return fetch(url + item.id, requestOptions)
+}
+
+export { editElement }

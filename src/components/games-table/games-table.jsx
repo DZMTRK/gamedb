@@ -5,15 +5,13 @@ import { DataGrid } from '@mui/x-data-grid'
 import { useTranslation } from 'react-i18next'
 import { useDispatch, useSelector } from 'react-redux'
 
-import * as actions from '../../actions'
-import { getGameData } from '../../api/API'
 import deleteElementFromTable from '../../service/deleteElement'
+import getTableData from '../../service/getTableData'
+import mutateElement from '../../service/mutateElement'
 import NewItemInput from '../new-item-input'
 
 const Snackbar = React.lazy(() => import('@mui/material/Snackbar'))
 const DeleteDialog = React.lazy(() => import('../delete-dialog'))
-
-const url = 'http://localhost:3002/game/'
 
 const columns = [
   { field: 'title', headerName: 'Title', type: 'str', flex: 3, editable: true },
@@ -26,7 +24,7 @@ const columns = [
 const snackbarHideDuration = 2000
 const snackbarPosition = { vertical: 'bottom', horizontal: 'right' }
 
-const getTableData = state => state.gametable.gametable
+const dataSelector = state => state.gametable.gametable
 
 function GamesTable() {
   const { t } = useTranslation()
@@ -34,19 +32,14 @@ function GamesTable() {
 
   const [rowSelectionModel, setRowSelectionModel] = useState([])
   const [open, setOpen] = useState(false)
-  const [actionMessage, setMessage] = useState('')
+  // const [actionMessage, setMessage] = useState('')
   const [dialogState, setDialogState] = useState(false)
 
-  const getData = useCallback(() => getGameData().then(data => dispatch(actions.getData(data))), [dispatch])
-  // const addElement = useCallback(item => dispatch(addElementToTable(item)).then(data => {
-
-  // }), [dispatch])
-
-  const data = useSelector(getTableData)
+  const data = useSelector(dataSelector)
 
 
   useEffect(
-    getData, [getData],
+    () => getTableData(dispatch), [dispatch],
   )
 
   // const addElement = useCallback(item => {
@@ -74,21 +67,21 @@ function GamesTable() {
   //   }
   // }, [getData, rowSelectionModel, t])
 
-  const mutateElement = useCallback(
-    async newRow => {
-      await fetch(url + newRow.id, {
-        method: 'PUT',
-        headers: {
-          'Content-type': 'application/json',
-        },
-        body: JSON.stringify(newRow),
-      })
-      setMessage(<p>{t('description.mutateItemMessage')}</p>)
-      setOpen(true)
-      return newRow
-    },
-    [t],
-  )
+  // const mutateElement = useCallback(
+  //   async newRow => {
+  //     await fetch(url + newRow.id, {
+  //       method: 'PUT',
+  //       headers: {
+  //         'Content-type': 'application/json',
+  //       },
+  //       body: JSON.stringify(newRow),
+  //     })
+  //     setMessage(<p>{t('description.mutateItemMessage')}</p>)
+  //     setOpen(true)
+  //     return newRow
+  //   },
+  //   [t],
+  // )
 
   const onProcessRowUpdateError = useCallback(error => console.error('Something went wrong', error), [])
 
@@ -143,7 +136,7 @@ function GamesTable() {
         open={open}
         autoHideDuration={snackbarHideDuration}
         onClose={handleSnackbarClose}
-        message={actionMessage}
+        // message={actionMessage}
         anchorOrigin={snackbarPosition}
       />
       <DeleteDialog
