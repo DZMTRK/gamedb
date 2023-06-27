@@ -42,6 +42,47 @@ function GamesTable() {
     () => getTableData(dispatch), [dispatch],
   )
 
+  // const addElement = useCallback(item => {
+  //   const requestOptions = {
+  //     method: 'POST',
+  //     headers: { 'Content-Type': 'application/json' },
+  //     body: JSON.stringify(item),
+  //   }
+  //   fetch(url, requestOptions)
+  //     .then(() => getData())
+  //     .then(setMessage(<p>{t('description.newItemMessage')}</p>), setOpen(true))
+  // }, [getData, t])
+
+  // const deleteElement = useCallback(() => {
+  //   const arr = [...rowSelectionModel]
+  //   arr.forEach(async element => {
+  //     const response = await fetch(url + element, { method: 'DELETE' })
+  //     if (response.ok) {
+  //       getData()
+  //     }
+  //   })
+  //   if (arr.length > 0) {
+  //     setMessage(<p>{t('description.deleteItemMessage')}</p>)
+  //     setOpen(true)
+  //   }
+  // }, [getData, rowSelectionModel, t])
+
+  // const mutateElement = useCallback(
+  //   async newRow => {
+  //     await fetch(url + newRow.id, {
+  //       method: 'PUT',
+  //       headers: {
+  //         'Content-type': 'application/json',
+  //       },
+  //       body: JSON.stringify(newRow),
+  //     })
+  //     setMessage(<p>{t('description.mutateItemMessage')}</p>)
+  //     setOpen(true)
+  //     return newRow
+  //   },
+  //   [t],
+  // )
+
   const onProcessRowUpdateError = useCallback(error => console.error('Something went wrong', error), [])
 
   const onRowSelectionModelChange = useCallback(newRowSelectionModel => {

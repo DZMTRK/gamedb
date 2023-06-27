@@ -9,7 +9,6 @@ const getGameData = () => fetch(url)
     }
   })
   .then(response => response.json())
-
 export { getGameData }
 
 
@@ -21,8 +20,8 @@ const addElement = item => {
   }
   return fetch(url, requestOptions)
 }
-
 export { addElement }
+
 
 const deleteElement = item => {
   const requestOptions = {
@@ -30,8 +29,8 @@ const deleteElement = item => {
   }
   return fetch(url + item, requestOptions)
 }
-
 export { deleteElement }
+
 
 const editElement = item => {
   const requestOptions = {
@@ -41,5 +40,4 @@ const editElement = item => {
   }
   return fetch(url + item.id, requestOptions)
 }
-
 export { editElement }
