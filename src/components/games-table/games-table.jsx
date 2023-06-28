@@ -4,6 +4,7 @@ import Button from '@mui/material/Button'
 import { DataGrid } from '@mui/x-data-grid'
 import { useTranslation } from 'react-i18next'
 import { useDispatch, useSelector } from 'react-redux'
+import { useNavigate } from 'react-router-dom'
 
 import * as actions from '../../actions'
 import { getGameData } from '../../api/API'
@@ -11,6 +12,8 @@ import { selectTableData } from '../../reducers/selector'
 import deleteElementFromDB from '../../service/deleteElement'
 import mutateElement from '../../service/mutateElement'
 import NewItemInput from '../new-item-input'
+import * as pagelist from '../pages/pagelist'
+
 
 const Snackbar = React.lazy(() => import('@mui/material/Snackbar'))
 const DeleteDialog = React.lazy(() => import('../delete-dialog'))
@@ -29,19 +32,23 @@ const snackbarPosition = { vertical: 'bottom', horizontal: 'right' }
 function GamesTable() {
   const { t } = useTranslation()
   const dispatch = useDispatch()
+  const navigate = useNavigate()
 
   const [rowSelectionModel, setRowSelectionModel] = useState([])
   const [open, setOpen] = useState(false)
   // const [actionMessage, setMessage] = useState('')
   const [dialogState, setDialogState] = useState(false)
 
-  const addDataToTable = useCallback(() => getGameData().then(sendDataToState => dispatch(actions.sendDataToState(sendDataToState))), [dispatch])
-  const updateTableData = useCallback(() => addDataToTable(), [addDataToTable])
-  const deleteElement = useCallback(selectedElements => deleteElementFromDB(selectedElements).then(updateTableData), [updateTableData])
+  const addDataToTable = useCallback(() => getGameData()
+    .then(sendDataToState => dispatch(actions.sendDataToState(sendDataToState)))
+    .catch(() => {
+      navigate(pagelist.path404)
+    }), [dispatch, navigate])
+  const deleteElement = useCallback(selectedElements => deleteElementFromDB(selectedElements).then(() => addDataToTable()), [addDataToTable])
   const data = useSelector(selectTableData)
 
   useEffect(
-    updateTableData, [updateTableData],
+    () => { addDataToTable() }, [addDataToTable],
   )
 
   const onProcessRowUpdateError = useCallback(error => console.error('Something went wrong', error), [])

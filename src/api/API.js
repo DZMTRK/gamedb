@@ -1,5 +1,3 @@
-import { useNavigate } from 'react-router-dom'
-
 const url = 'http://localhost:3002/game/'
 
 const fetchMethods = {
@@ -10,13 +8,15 @@ const fetchMethods = {
 const requestHeader = { 'Content-type': 'application/json' }
 const requestBody = item => JSON.stringify(item)
 
-const getGameData = () => (fetch(url)
-  .catch(response => {
+const getGameData = () => fetch(url)
+  .then(response => {
     if (!response.ok) {
-      useNavigate('/404')
+      throw new Error('can not get data')
+    } else {
+      return response
     }
   })
-  .then(response => response.json()))
+  .then(response => response.json())
 
 
 const addElement = item => {
