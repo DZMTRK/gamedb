@@ -2,6 +2,14 @@ import { useNavigate } from 'react-router-dom'
 
 const url = 'http://localhost:3002/game/'
 
+const fetchMethods = {
+  post: 'POST',
+  delete: 'DELETE',
+  put: 'PUT',
+}
+
+const requestHeader = { 'Content-type': 'application/json' }
+
 const getGameData = () => (fetch(url)
   .catch(response => {
     if (!response.ok) {
@@ -13,8 +21,8 @@ const getGameData = () => (fetch(url)
 
 const addElement = item => {
   const requestOptions = {
-    method: 'POST',
-    headers: { 'Content-Type': 'application/json' },
+    method: fetchMethods.post,
+    headers: requestHeader,
     body: JSON.stringify(item),
   }
   return fetch(url, requestOptions)
@@ -23,7 +31,7 @@ const addElement = item => {
 
 const deleteElement = item => {
   const requestOptions = {
-    method: 'DELETE',
+    method: fetchMethods.delete,
   }
   return fetch(url + item, requestOptions)
 }
@@ -31,8 +39,8 @@ const deleteElement = item => {
 
 const editElement = item => {
   const requestOptions = {
-    method: 'PUT',
-    headers: { 'Content-type': 'application/json' },
+    method: fetchMethods.put,
+    headers: requestHeader,
     body: JSON.stringify(item),
   }
   return fetch(url + item.id, requestOptions)
