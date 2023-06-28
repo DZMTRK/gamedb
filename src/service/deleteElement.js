@@ -1,8 +1,9 @@
 import { deleteElement } from '../api/API'
 
-const deleteElementFromDB = async selectedElements => {
+const deleteElementFromDB = selectedElements => {
   const arr = [...selectedElements]
-  arr.forEach(element => deleteElement(element))
+  const arrayOfPromises = arr.map(element => deleteElement(element))
+  return Promise.all(arrayOfPromises)
 }
 
 export default deleteElementFromDB
