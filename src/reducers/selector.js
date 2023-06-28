@@ -1,7 +1,5 @@
 import { createSelector } from 'reselect'
 
-const tableDataSelector = state => state.gametable.gametable
-
-const tableData = createSelector([tableDataSelector], data => data)
+const tableData = createSelector(state => state.gametable.gametable, data => data)
 
 export { tableData }
