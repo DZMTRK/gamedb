@@ -40,7 +40,7 @@ function GamesTable() {
   const [dialogState, setDialogState] = useState(false)
 
   const addDataToTable = useCallback(() => getGameData()
-    .then(sendDataToState => dispatch(actions.sendDataToState(sendDataToState)))
+    .then(data => dispatch(actions.sendDataToState(data)))
     .catch(() => {
       navigate(pagelist.path404)
     }), [dispatch, navigate])
