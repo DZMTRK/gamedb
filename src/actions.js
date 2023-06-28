@@ -1,1 +1,1 @@
-export const getData = payload => ({ type: 'GET_DATA', payload })
+export const sendDataToState = payload => ({ type: 'SEND_DATA_TO_STATE', payload })

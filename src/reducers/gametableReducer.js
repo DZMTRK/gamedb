@@ -5,7 +5,7 @@ const initState = {
 // eslint-disable-next-line default-param-last
 const gametableReducer = (state = initState, action) => {
   switch (action.type) {
-    case 'GET_DATA':
+    case 'SEND_DATA_TO_STATE':
       return {
         gametable: action.payload,
       }

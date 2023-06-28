@@ -5,9 +5,10 @@ import { DataGrid } from '@mui/x-data-grid'
 import { useTranslation } from 'react-i18next'
 import { useDispatch, useSelector } from 'react-redux'
 
-import { tableData } from '../../reducers/selector'
-import deleteElementFromTable from '../../service/deleteElement'
-import getTableData from '../../service/getTableData'
+import * as actions from '../../actions'
+import { getGameData } from '../../api/API'
+import { selectTableData } from '../../reducers/selector'
+import deleteElementFromDB from '../../service/deleteElement'
 import mutateElement from '../../service/mutateElement'
 import NewItemInput from '../new-item-input'
 
@@ -34,11 +35,13 @@ function GamesTable() {
   // const [actionMessage, setMessage] = useState('')
   const [dialogState, setDialogState] = useState(false)
 
-  const data = useSelector(tableData)
-
+  const addDataToTable = useCallback(() => getGameData().then(sendDataToState => dispatch(actions.sendDataToState(sendDataToState))), [dispatch])
+  const updateTableData = useCallback(() => addDataToTable(), [addDataToTable])
+  const deleteElement = useCallback(selectedElements => deleteElementFromDB(selectedElements).then(updateTableData), [updateTableData])
+  const data = useSelector(selectTableData)
 
   useEffect(
-    () => getTableData(dispatch), [dispatch],
+    updateTableData, [updateTableData],
   )
 
   const onProcessRowUpdateError = useCallback(error => console.error('Something went wrong', error), [])
@@ -69,8 +72,8 @@ function GamesTable() {
 
   const handleDialogAgree = useCallback(() => {
     setDialogState(false)
-    deleteElementFromTable(rowSelectionModel, dispatch)
-  }, [dispatch, rowSelectionModel])
+    deleteElement(rowSelectionModel)
+  }, [deleteElement, rowSelectionModel])
 
   return (
     <div>

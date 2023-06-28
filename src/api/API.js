@@ -2,14 +2,13 @@ import { useNavigate } from 'react-router-dom'
 
 const url = 'http://localhost:3002/game/'
 
-const getGameData = () => fetch(url)
+const getGameData = () => (fetch(url)
   .catch(response => {
     if (!response.ok) {
       useNavigate('/404')
     }
   })
-  .then(response => response.json())
-export { getGameData }
+  .then(response => response.json()))
 
 
 const addElement = item => {
@@ -20,7 +19,6 @@ const addElement = item => {
   }
   return fetch(url, requestOptions)
 }
-export { addElement }
 
 
 const deleteElement = item => {
@@ -29,7 +27,6 @@ const deleteElement = item => {
   }
   return fetch(url + item, requestOptions)
 }
-export { deleteElement }
 
 
 const editElement = item => {
@@ -40,4 +37,5 @@ const editElement = item => {
   }
   return fetch(url + item.id, requestOptions)
 }
-export { editElement }
+
+export { getGameData, addElement, deleteElement, editElement }

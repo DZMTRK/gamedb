@@ -1,10 +1,8 @@
-import { getData } from '../actions'
-import { deleteElement, getGameData } from '../api/API'
+import { deleteElement } from '../api/API'
 
-const deleteElementFromTable = (rowSelectionModel, dispatch) => {
-  const arr = [...rowSelectionModel]
-  async function deleteFromDB() { arr.forEach(element => deleteElement(element)) }
-  deleteFromDB().then(getGameData).then(data => dispatch(getData(data)))
+const deleteElementFromDB = async selectedElements => {
+  const arr = [...selectedElements]
+  arr.forEach(element => deleteElement(element))
 }
 
-export default deleteElementFromTable
+export default deleteElementFromDB

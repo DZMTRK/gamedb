@@ -17,6 +17,9 @@ function NewItemInput({ onItemAdd }) {
   const { t } = useTranslation()
   const dispatch = useDispatch()
 
+  const addElement = useCallback(newItem => dispatch(addElementToTable(newItem)), [dispatch])
+
+
   const onSubmit = useCallback(e => {
     e.preventDefault()
     const item = {
@@ -27,15 +30,28 @@ function NewItemInput({ onItemAdd }) {
       developer,
       publisher,
     }
-    addElementToTable(item, dispatch)
-  }, [title, year, genre, raiting, developer, publisher, dispatch])
+    addElement(item)
+  }, [title, year, genre, raiting, developer, publisher, addElement])
 
-  const handleTitleInput = useCallback(e => { setTitle(e.target.value.trim()) }, [])
-  const handleYearInput = useCallback(e => { setYear(e.target.value) }, [])
-  const handleGenreInput = useCallback(e => { setGenre([e.target.value]) }, [])
-  const handleRaitingInput = useCallback(e => { setRaiting(e.target.value.trim()) }, [])
-  const handleDeveloperInput = useCallback(e => { setDeveloper(e.target.value.trim()) }, [])
-  const handlePublisherInput = useCallback(e => { setPublisher(e.target.value.trim().split(',')) }, [])
+
+  const handleTitleInput = useCallback(e => {
+    setTitle(e.target.value.trim())
+  }, [])
+  const handleYearInput = useCallback(e => {
+    setYear(e.target.value)
+  }, [])
+  const handleGenreInput = useCallback(e => {
+    setGenre([e.target.value])
+  }, [])
+  const handleRaitingInput = useCallback(e => {
+    setRaiting(e.target.value.trim())
+  }, [])
+  const handleDeveloperInput = useCallback(e => {
+    setDeveloper(e.target.value.trim())
+  }, [])
+  const handlePublisherInput = useCallback(e => {
+    setPublisher(e.target.value.trim().split(','))
+  }, [])
 
   return (
     <form onSubmit={onSubmit}>
