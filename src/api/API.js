@@ -7,8 +7,8 @@ const fetchMethods = {
   delete: 'DELETE',
   put: 'PUT',
 }
-
 const requestHeader = { 'Content-type': 'application/json' }
+const requestBody = item => JSON.stringify(item)
 
 const getGameData = () => (fetch(url)
   .catch(response => {
@@ -23,7 +23,7 @@ const addElement = item => {
   const requestOptions = {
     method: fetchMethods.post,
     headers: requestHeader,
-    body: JSON.stringify(item),
+    body: requestBody(item),
   }
   return fetch(url, requestOptions)
 }
@@ -41,7 +41,7 @@ const editElement = item => {
   const requestOptions = {
     method: fetchMethods.put,
     headers: requestHeader,
-    body: JSON.stringify(item),
+    body: requestBody(item),
   }
   return fetch(url + item.id, requestOptions)
 }

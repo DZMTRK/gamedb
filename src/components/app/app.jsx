@@ -5,21 +5,19 @@ import { BrowserRouter as Router, Route, Routes } from 'react-router-dom'
 
 import LanguageSwitcher from '../language-switcher'
 import Page404 from '../pages/page404'
+import * as pagelist from '../pages/pagelist'
 
 const GamesTable = React.lazy(() => import('../games-table'))
 
 function App() {
-  const rootPath = '/'
-  const path404 = '/404'
-
   const { t } = useTranslation()
   return (
     <Router>
       <div>
         <Routes>
-          <Route path={path404} element={<Page404 />} />
+          <Route path={pagelist.path404} element={<Page404 />} />
           <Route
-            path={rootPath}
+            path={pagelist.rootPath}
             element={
               <div>
                 <header>
