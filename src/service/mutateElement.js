@@ -1,8 +1,5 @@
 import { editElement } from '../api/API'
 
-const mutateElement = item => {
-  editElement(item)
-  return item
-}
+const mutateElement = (newItem, oldItem) => editElement(newItem).then(() => newItem).catch(() => oldItem)
 
 export default mutateElement
