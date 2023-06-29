@@ -7,7 +7,7 @@ import { useDispatch } from 'react-redux'
 import addElementToTable from '../../service/addElement'
 
 
-function NewItemInput({ onItemAdd }) {
+function NewItemInput({ setMessage, setOpen }) {
   const [title, setTitle] = useState('')
   const [year, setYear] = useState(null)
   const [genre, setGenre] = useState([])
@@ -17,7 +17,11 @@ function NewItemInput({ onItemAdd }) {
   const { t } = useTranslation()
   const dispatch = useDispatch()
 
-  const addElement = useCallback(newItem => dispatch(addElementToTable(newItem)), [dispatch])
+  const addElement = useCallback(newItem => {
+    dispatch(addElementToTable(newItem))
+    setMessage(<p>{t('description.newItemMessage')}</p>)
+    setOpen(true)
+  }, [dispatch, setMessage, setOpen, t])
 
 
   const onSubmit = useCallback(e => {

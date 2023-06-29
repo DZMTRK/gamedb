@@ -35,16 +35,23 @@ function GamesTable() {
 
   const [rowSelectionModel, setRowSelectionModel] = useState([])
   const [open, setOpen] = useState(false)
-  // const [actionMessage, setMessage] = useState('')
+  const [actionMessage, setMessage] = useState('')
   const [dialogState, setDialogState] = useState(false)
 
-  const addDataToTable = useCallback(() => dispatch(getTableData()).catch(() => navigate(pagelist.path404)), [dispatch, navigate])
-  const deleteElement = useCallback(selectedElements => deleteElementFromDB(selectedElements).then(() => addDataToTable()), [addDataToTable])
+  const addDataToTable = useCallback(() => dispatch(getTableData())
+    .catch(() => navigate(pagelist.path404)), [dispatch, navigate])
+
   const data = useSelector(selectTableData)
 
   useEffect(
     () => { addDataToTable() }, [addDataToTable],
   )
+
+  const deleteElement = useCallback(selectedElements => {
+    deleteElementFromDB(selectedElements).then(() => addDataToTable())
+    setMessage(<p>{t('description.deleteItemMessage')}</p>)
+    setOpen(true)
+  }, [addDataToTable, t])
 
   const onProcessRowUpdateError = useCallback(error => console.error('Something went wrong', error), [])
 
@@ -53,10 +60,7 @@ function GamesTable() {
     return rowSelectionModel
   }, [rowSelectionModel])
 
-  const handleSnackbarClose = useCallback((event, reason) => {
-    if (reason === 'clickaway') { return }
-    setOpen(false)
-  }, [])
+  const handleSnackbarClose = useCallback(() => setOpen(false), [])
 
   const handleDialogOpen = useCallback(() => {
     if (rowSelectionModel.length > 0) {
@@ -75,7 +79,7 @@ function GamesTable() {
 
   return (
     <div>
-      <NewItemInput />
+      <NewItemInput setMessage={setMessage} setOpen={setOpen} />
       <DataGrid
         rows={data}
         columns={columns}
@@ -95,7 +99,7 @@ function GamesTable() {
         open={open}
         autoHideDuration={snackbarHideDuration}
         onClose={handleSnackbarClose}
-        // message={actionMessage}
+        message={actionMessage}
         anchorOrigin={snackbarPosition}
       />
       <DeleteDialog
