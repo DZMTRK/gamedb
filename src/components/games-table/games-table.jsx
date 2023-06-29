@@ -64,13 +64,9 @@ function GamesTable() {
     }
   }, [rowSelectionModel.length])
 
-  const handleDialogClose = useCallback(() => {
-    setDialogState(true)
-  }, [])
+  const handleDialogClose = useCallback(() => setDialogState(true), [])
 
-  const handleDialogDisagree = useCallback(() => {
-    setDialogState(false)
-  }, [])
+  const handleDialogDisagree = useCallback(() => setDialogState(false), [])
 
   const handleDialogAgree = useCallback(() => {
     setDialogState(false)
