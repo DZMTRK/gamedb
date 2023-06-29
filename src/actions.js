@@ -1,1 +1,3 @@
-export const sendDataToState = payload => ({ type: 'SEND_DATA_TO_STATE', payload })
+import { createAction } from 'redux-actions'
+
+export const sendDataToState = createAction('SEND_DATA_TO_STATE', payload => payload)

@@ -1,17 +1,18 @@
+import { handleAction } from 'redux-actions'
+
+import { sendDataToState } from '../actions'
+
 const initState = {
   gametable: [],
 }
 
-// eslint-disable-next-line default-param-last
-const gametableReducer = (state = initState, action) => {
-  switch (action.type) {
-    case 'SEND_DATA_TO_STATE':
-      return {
-        gametable: action.payload,
-      }
-    default:
-      return state
-  }
-}
+const gametableReducer = handleAction(
+  sendDataToState,
+  (state, action) => ({
+    ...state,
+    gametable: action.payload,
+  }),
+  initState,
+)
 
 export default gametableReducer
