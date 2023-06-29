@@ -1,5 +1,5 @@
-import { sendDataToState } from '../actions'
 import { addElement, getGameData } from '../api/API'
+import { sendDataToState } from '../reducers/gametableReducer'
 
 const addElementToTable = item => (dispatch, getState) => {
   addElement(item)

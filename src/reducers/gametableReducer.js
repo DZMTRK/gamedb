@@ -1,18 +1,24 @@
-import { handleAction } from 'redux-actions'
+import { createAction, handleActions } from 'redux-actions'
 
-import { sendDataToState } from '../actions'
 
 const initState = {
   gametable: [],
 }
 
-const gametableReducer = handleAction(
-  sendDataToState,
-  (state, action) => ({
-    ...state,
-    gametable: action.payload,
-  }),
-  initState,
-)
+const sendDataToState = createAction('SEND_DATA_TO_STATE', payload => payload)
 
-export default gametableReducer
+const handleTableData = (state, action) => ({
+  ...state,
+  gametable: action.payload,
+})
+
+
+const reducers = handleActions({
+  SEND_DATA_TO_STATE: handleTableData,
+}, initState)
+
+export {
+  sendDataToState,
+}
+
+export default reducers
