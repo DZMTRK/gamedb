@@ -4,12 +4,14 @@ import Button from '@mui/material/Button'
 import { DataGrid } from '@mui/x-data-grid'
 import { useTranslation } from 'react-i18next'
 import { useDispatch, useSelector } from 'react-redux'
+import { useNavigate } from 'react-router-dom'
 
 import { selectTableData } from '../../reducers/selector'
 import deleteElementFromDB from '../../service/deleteElement'
 import getTableData from '../../service/getTableData'
 import mutateElement from '../../service/mutateElement'
 import NewItemInput from '../new-item-input'
+import * as pagelist from '../pages/pagelist'
 
 
 const Snackbar = React.lazy(() => import('@mui/material/Snackbar'))
@@ -29,13 +31,14 @@ const snackbarPosition = { vertical: 'bottom', horizontal: 'right' }
 function GamesTable() {
   const { t } = useTranslation()
   const dispatch = useDispatch()
+  const navigate = useNavigate()
 
   const [rowSelectionModel, setRowSelectionModel] = useState([])
   const [open, setOpen] = useState(false)
   // const [actionMessage, setMessage] = useState('')
   const [dialogState, setDialogState] = useState(false)
 
-  const addDataToTable = useCallback(() => dispatch(getTableData()), [dispatch])
+  const addDataToTable = useCallback(() => dispatch(getTableData()).catch(() => navigate(pagelist.path404)), [dispatch, navigate])
   const deleteElement = useCallback(selectedElements => deleteElementFromDB(selectedElements).then(() => addDataToTable()), [addDataToTable])
   const data = useSelector(selectTableData)
 
