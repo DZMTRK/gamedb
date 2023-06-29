@@ -1,6 +1,9 @@
-import * as actions from '../actions'
+import { sendDataToState } from '../actions'
 import { getGameData } from '../api/API'
+import * as pagelist from '../components/pages/pagelist'
 
-const getTableData = dispatch => getGameData().then(data => dispatch(actions.getData(data)))
+const getTableData = () => (dispatch, navigate) => getGameData()
+  .then(data => dispatch(sendDataToState(data)))
+  .catch(() => navigate(pagelist.path404))
 
 export default getTableData
