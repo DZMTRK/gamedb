@@ -32,6 +32,7 @@ const enLocale = {
       deleteDialogDisagree: 'Cancel',
       deleteDialogAgree: 'Agree',
       mutateItemMessage: 'Selected item was mutated',
+      mutateItemMessageFail: 'Changes were not saved. No connection to DB!',
     },
   },
 }

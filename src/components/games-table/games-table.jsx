@@ -53,6 +53,17 @@ function GamesTable() {
     setOpen(true)
   }, [addDataToTable, t])
 
+  const editElement = useCallback((newItem, oldItem) => mutateElement(newItem, oldItem)
+    .then(newItem => {
+      setMessage(<p>{t('description.mutateItemMessage')}</p>)
+      setOpen(true)
+      return newItem
+    }).catch(() => {
+      setMessage(<p>{t('description.mutateItemMessageFail')}</p>)
+      setOpen(true)
+      return oldItem
+    }), [t])
+
   const onProcessRowUpdateError = useCallback(error => console.error('Something went wrong', error), [])
 
   const onRowSelectionModelChange = useCallback(newRowSelectionModel => {
@@ -77,6 +88,7 @@ function GamesTable() {
     deleteElement(rowSelectionModel)
   }, [deleteElement, rowSelectionModel])
 
+
   return (
     <div>
       <NewItemInput setMessage={setMessage} setOpen={setOpen} />
@@ -89,7 +101,7 @@ function GamesTable() {
         onRowSelectionModelChange={onRowSelectionModelChange}
         rowSelectionModel={rowSelectionModel}
         editMode="row"
-        processRowUpdate={mutateElement}
+        processRowUpdate={editElement}
         onProcessRowUpdateError={onProcessRowUpdateError}
       />
       <Button variant="outlined" color="error" onClick={handleDialogOpen}>

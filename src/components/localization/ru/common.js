@@ -32,6 +32,7 @@ const ruLocale = {
       deleteDialogDisagree: 'Отмена',
       deleteDialogAgree: 'Да',
       mutateItemMessage: 'Выделенный элемент был изменен',
+      mutateItemMessageFail: 'Изменения не были сохранены. Нет соединения с БД!',
     },
   },
 }
