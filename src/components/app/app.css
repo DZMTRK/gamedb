@@ -1,0 +1,23 @@
+#logoAndHeader {
+    display: flex;
+    justify-content: space-between;
+}
+
+h1 {
+    flex-grow: 1;
+    font-family:'Gill Sans', 'Gill Sans MT', Calibri, 'Trebuchet MS', sans-serif
+}
+
+#logoContainer {
+    width: 150px;
+    overflow: hidden;
+}
+
+#logo {
+    width: 100%;
+    height: auto;
+}
+
+#navigation {
+    align-self: center;
+}
