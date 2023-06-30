@@ -13,7 +13,7 @@
 h1 {
     flex-grow: 1;
     margin-left: 20px;
-    font-size: 3rem;
+    font-size: 2rem;
     align-self:center;
     color:azure;
     font-family: Verdana, Geneva, Tahoma, sans-serif
@@ -21,7 +21,7 @@ h1 {
 
 #logoContainer {
     min-width: 100px;
-    max-width: 300px;
+    max-width: 200px;
     overflow: hidden;
     margin: 20px 0px;
 }
