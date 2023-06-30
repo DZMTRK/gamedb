@@ -18,7 +18,7 @@ function LanguageSwitcher() {
         <Button
           key={lng}
           name={lng}
-          style={{ fontWeight: i18n.resolvedLanguage === lng ? 'bold' : 'normal' }}
+          style={{ fontWeight: i18n.resolvedLanguage === lng ? '900' : 'normal', color: 'white' }}
           type="submit"
           onClick={handleLanguageSwitch}
         >

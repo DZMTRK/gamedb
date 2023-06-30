@@ -10,6 +10,7 @@ import { selectTableData } from '../../reducers/selector'
 import deleteElementFromDB from '../../service/deleteElement'
 import getTableData from '../../service/getTableData'
 import mutateElement from '../../service/mutateElement'
+import FormPropsTextFields from '../itemInputMUI/itemInputMUI'
 import NewItemInput from '../new-item-input'
 import * as pagelist from '../pages/pagelist'
 
@@ -91,6 +92,7 @@ function GamesTable() {
 
   return (
     <div>
+      <FormPropsTextFields />
       <NewItemInput setMessage={setMessage} setOpen={setOpen} />
       <DataGrid
         rows={data}
