@@ -53,7 +53,7 @@ function GamesTable() {
     setOpen(true)
   }, [addDataToTable, t])
 
-  const editElement = useCallback((newItem, oldItem) => mutateElement(newItem, oldItem)
+  const handleEditElement = useCallback((newItem, oldItem) => mutateElement(newItem, oldItem)
     .then(newItem => {
       setMessage(<p>{t('description.mutateItemMessage')}</p>)
       setOpen(true)
@@ -101,7 +101,7 @@ function GamesTable() {
         onRowSelectionModelChange={onRowSelectionModelChange}
         rowSelectionModel={rowSelectionModel}
         editMode="row"
-        processRowUpdate={editElement}
+        processRowUpdate={handleEditElement}
         onProcessRowUpdateError={onProcessRowUpdateError}
       />
       <Button variant="outlined" color="error" onClick={handleDialogOpen}>
