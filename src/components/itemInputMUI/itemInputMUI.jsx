@@ -29,7 +29,7 @@ export default function FormPropsTextFields() {
             shrink: true,
           }}
           InputProps={{ inputProps: { min: 1970, max: 2099 } }}
-          onEmpty="1970"
+          defaultValue="1970"
         />
       </div>
     </Box>
