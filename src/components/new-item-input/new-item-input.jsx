@@ -58,7 +58,7 @@ function NewItemInput({ setMessage, setOpen }) {
   }, [])
 
   return (
-    <form onSubmit={onSubmit}>
+    <form id="add_new_item_form" onSubmit={onSubmit}>
       <label htmlFor="title">
         {t('description.gameTitleInput')}
         <input
