@@ -1,36 +1,202 @@
-import * as React from 'react'
+import React, { useCallback, useState } from 'react'
 
 import Box from '@mui/material/Box'
+import Button from '@mui/material/Button'
+import FormControl from '@mui/material/FormControl'
+import InputLabel from '@mui/material/InputLabel'
+import MenuItem from '@mui/material/MenuItem'
+import OutlinedInput from '@mui/material/OutlinedInput'
+import Select from '@mui/material/Select'
+import { useTheme } from '@mui/material/styles'
 import TextField from '@mui/material/TextField'
+import { useTranslation } from 'react-i18next'
+import { useDispatch } from 'react-redux'
 
-export default function FormPropsTextFields() {
+import addElementToTable from '../../service/addElement'
+
+
+const ITEM_HEIGHT = 48
+const ITEM_PADDING_TOP = 8
+const MenuProps = {
+  PaperProps: {
+    style: {
+      maxHeight: ITEM_HEIGHT * 4.5 + ITEM_PADDING_TOP,
+      width: 250,
+    },
+  },
+}
+
+function getStyles(name, personName, theme) {
+  return {
+    fontWeight:
+      personName.indexOf(name) === -1
+        ? theme.typography.fontWeightRegular
+        : theme.typography.fontWeightMedium,
+  }
+}
+
+export default function NewItemInput({ setMessage, setOpen }) {
+  const [title, setTitle] = useState('')
+  const [year, setYear] = useState(null)
+  const [genre, setGenre] = useState([])
+  const [raiting, setRaiting] = useState(null)
+  const [developer, setDeveloper] = useState('')
+  const [publisher, setPublisher] = useState([])
+  const theme = useTheme()
+  const dispatch = useDispatch()
+  const { t } = useTranslation()
+
+  const genres = [
+    t('description.genreArcade'),
+    t('description.genreAdventure'),
+    t('description.genreFighting'),
+    t('description.genreRacing'),
+    t('description.genreRTS'),
+    t('description.genreRPG'),
+    t('description.genreShooter'),
+    t('description.genreSimulator'),
+    t('description.genreStrategy'),
+    t('description.genreTBS'),
+  ]
+
+  const addElement = useCallback(newItem => {
+    dispatch(addElementToTable(newItem))
+    setMessage(<p>{t('description.newItemMessage')}</p>)
+    setOpen(true)
+  }, [dispatch, setMessage, setOpen, t])
+
+  const clearForm = useCallback(() => {
+    setTitle('')
+    setYear(1970)
+    setGenre([])
+    setRaiting(1)
+    setDeveloper('')
+    setPublisher([])
+  }, [])
+
+  const onSubmit = useCallback(e => {
+    e.preventDefault()
+    const item = {
+      title,
+      year,
+      genre,
+      raiting,
+      developer,
+      publisher,
+    }
+    addElement(item)
+    clearForm()
+  }, [title, year, genre, raiting, developer, publisher, addElement, clearForm])
+
+
+  const handleTitleInput = useCallback(e => {
+    setTitle(e.target.value.trim())
+  }, [])
+  const handleYearInput = useCallback(e => {
+    setYear(e.target.value)
+  }, [])
+  const handleGenreInput = useCallback(e => {
+    const {
+      target: { value },
+    } = e
+    setGenre(
+      // On autofill we get a stringified value.
+      typeof value === 'string' ? value.split(',') : value,
+    )
+  }, [])
+  const handleRaitingInput = useCallback(e => {
+    setRaiting(e.target.value.trim())
+  }, [])
+  const handleDeveloperInput = useCallback(e => {
+    setDeveloper(e.target.value.trim())
+  }, [])
+  const handlePublisherInput = useCallback(e => {
+    setPublisher(e.target.value.trim().split(','))
+  }, [])
+
   return (
     <Box
       component="form"
-      sx={{
-        '& .MuiTextField-root': { m: 1, width: '25ch' },
-      }}
-      noValidate
+      sx={{ '& .MuiTextField-root': { m: 1 } }}
       autoComplete="off"
+      onSubmit={onSubmit}
     >
       <div>
         <TextField
           required
-          id="outlined-required"
-          label="Required"
-          defaultValue="Hello World"
+          id="title"
+          label="Game"
+          value={title}
+          placeholder="Game title"
+          onChange={handleTitleInput}
         />
         <TextField
           required
-          id="outlined-number"
-          label="Number"
+          id="year"
+          label="Year"
+          value={year}
+          placeholder="1970"
           type="number"
           InputLabelProps={{
             shrink: true,
           }}
           InputProps={{ inputProps: { min: 1970, max: 2099 } }}
-          defaultValue="1970"
+          onChange={handleYearInput}
         />
+        <FormControl sx={{ m: 1, width: '25ch' }}>
+          <InputLabel id="genre" required placeholder="genre">Genre</InputLabel>
+          <Select
+            labelId="genre"
+            id="demo-multiple-name"
+            multiple
+            value={genre}
+            onChange={handleGenreInput}
+            input={<OutlinedInput label="Name" />}
+            MenuProps={MenuProps}
+          >
+            {genres.map(item => (
+              <MenuItem
+                key={item}
+                value={item}
+                style={getStyles(item, genre, theme)}
+              >
+                {item}
+              </MenuItem>
+            ))}
+          </Select>
+        </FormControl>
+        <TextField
+          required
+          id="raiting"
+          label="Raiting"
+          type="number"
+          value={raiting}
+          placeholder="1"
+          InputLabelProps={{
+            shrink: true,
+          }}
+          InputProps={{ inputProps: { min: 1, max: 10 } }}
+          onChange={handleRaitingInput}
+        />
+        <TextField
+          required
+          id="developer"
+          label="Developer"
+          value={developer}
+          placeholder="Developer"
+          onChange={handleDeveloperInput}
+        />
+        <TextField
+          required
+          id="publisher"
+          label="Publisher"
+          value={publisher}
+          placeholder="Publisher"
+          onChange={handlePublisherInput}
+        />
+        <Button sx={{ width: 150, height: 56, margin: 1 }} type="submit" variant="outlined" color="success">
+          {t('description.buttonAdd')}
+        </Button>
       </div>
     </Box>
   )

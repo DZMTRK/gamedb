@@ -39,7 +39,8 @@
     "build": "react-scripts build",
     "test": "react-scripts test",
     "eject": "react-scripts eject",
-    "gamedb": "concurrently \"npm start\" \"json-server -p 3002 -w db.json\""
+    "gamedb": "concurrently \"npm start\" \"json-server -p 3002 -w db.json\"",
+    "codecept": "npx codeceptjs run --steps"
   },
   "eslintConfig": {
     "extends": [
