@@ -47,16 +47,16 @@ export default function NewItemInput({ setMessage, setOpen }) {
   const { t } = useTranslation()
 
   const genres = [
-    t('description.genreArcade'),
-    t('description.genreAdventure'),
-    t('description.genreFighting'),
-    t('description.genreRacing'),
-    t('description.genreRTS'),
-    t('description.genreRPG'),
-    t('description.genreShooter'),
-    t('description.genreSimulator'),
-    t('description.genreStrategy'),
-    t('description.genreTBS'),
+    'Arcade',
+    'Adventure',
+    'Fighting',
+    'Racing',
+    'Real Time Strategy (RTS)',
+    'Role-playing (RPG)',
+    'Shooter',
+    'Simulator',
+    'Strategy',
+    'Turn-based strategy (TBS)',
   ]
 
   const addElement = useCallback(newItem => {
@@ -116,6 +116,7 @@ export default function NewItemInput({ setMessage, setOpen }) {
 
   return (
     <Box
+      id="add_new_item_form"
       component="form"
       sx={{ '& .MuiTextField-root': { m: 1 } }}
       autoComplete="off"
