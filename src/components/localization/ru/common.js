@@ -3,7 +3,7 @@ const ruLocale = {
     description: {
       h1: 'СПИСОК ЛЮБИМЫХ КОМПЬЮТЕРНЫХ ИГР',
       loading: 'Пожалуйста подождите. Загрузка данных...',
-      gameTitleInput: 'Название',
+      gameTitleInput: 'Название игры',
       gameTitlePlaceholder: 'Игра',
       yearInput: 'Год',
       genreInput: 'Жанр',

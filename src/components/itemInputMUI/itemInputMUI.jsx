@@ -125,7 +125,7 @@ export default function NewItemInput({ setMessage, setOpen }) {
         <TextField
           required
           id="title"
-          label="Game"
+          label={t('description.gameTitleInput')}
           value={title}
           placeholder="Game title"
           onChange={handleTitleInput}
@@ -133,7 +133,7 @@ export default function NewItemInput({ setMessage, setOpen }) {
         <TextField
           required
           id="year"
-          label="Year"
+          label={t('description.yearInput')}
           value={year}
           placeholder="1970"
           type="number"
@@ -144,7 +144,7 @@ export default function NewItemInput({ setMessage, setOpen }) {
           onChange={handleYearInput}
         />
         <FormControl sx={{ m: 1, width: '25ch' }}>
-          <InputLabel id="genre" required placeholder="genre">Genre</InputLabel>
+          <InputLabel id="genre" required>{t('description.genreInput')}</InputLabel>
           <Select
             labelId="genre"
             id="demo-multiple-name"
@@ -168,7 +168,7 @@ export default function NewItemInput({ setMessage, setOpen }) {
         <TextField
           required
           id="raiting"
-          label="Raiting"
+          label={t('description.raitingInput')}
           type="number"
           value={raiting}
           placeholder="1"
@@ -181,7 +181,7 @@ export default function NewItemInput({ setMessage, setOpen }) {
         <TextField
           required
           id="developer"
-          label="Developer"
+          label={t('description.developerInput')}
           value={developer}
           placeholder="Developer"
           onChange={handleDeveloperInput}
@@ -189,7 +189,7 @@ export default function NewItemInput({ setMessage, setOpen }) {
         <TextField
           required
           id="publisher"
-          label="Publisher"
+          label={t('description.publisherInput')}
           value={publisher}
           placeholder="Publisher"
           onChange={handlePublisherInput}
