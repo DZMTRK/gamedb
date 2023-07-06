@@ -27,6 +27,7 @@ const columns = [
 ]
 const snackbarHideDuration = 2000
 const snackbarPosition = { vertical: 'bottom', horizontal: 'right' }
+const elementMargin = { m: 1 }
 
 function GamesTable() {
   const { t } = useTranslation()
@@ -93,6 +94,7 @@ function GamesTable() {
     <div>
       <NewItemInput setMessage={setMessage} setOpen={setOpen} />
       <DataGrid
+        sx={elementMargin}
         rows={data}
         columns={columns}
         autoHeight
@@ -104,7 +106,7 @@ function GamesTable() {
         processRowUpdate={handleEditElement}
         onProcessRowUpdateError={onProcessRowUpdateError}
       />
-      <Button variant="outlined" color="error" onClick={handleDialogOpen}>
+      <Button variant="outlined" color="error" sx={elementMargin} onClick={handleDialogOpen}>
         {t('description.buttonDelete')}
       </Button>
       <Snackbar
