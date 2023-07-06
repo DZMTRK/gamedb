@@ -106,7 +106,7 @@ function GamesTable() {
         processRowUpdate={handleEditElement}
         onProcessRowUpdateError={onProcessRowUpdateError}
       />
-      <Button variant="outlined" color="error" sx={elementMargin} onClick={handleDialogOpen}>
+      <Button variant="contained" color="error" sx={elementMargin} onClick={handleDialogOpen}>
         {t('description.buttonDelete')}
       </Button>
       <Snackbar

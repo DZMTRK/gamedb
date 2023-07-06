@@ -17,6 +17,7 @@ import addElementToTable from '../../service/addElement'
 
 const ITEM_HEIGHT = 48
 const ITEM_PADDING_TOP = 8
+const buttonStyle = { width: 150, height: 56, margin: 1, fontSize: 18 }
 const MenuProps = {
   PaperProps: {
     style: {
@@ -207,7 +208,7 @@ export default function NewItemInput({ setMessage, setOpen }) {
           InputLabelProps={labelProps}
           onChange={handlePublisherInput}
         />
-        <Button sx={{ width: 150, height: 56, margin: 1 }} type="submit" variant="outlined" color="success">
+        <Button sx={buttonStyle} type="submit" variant="contained" color="success">
           {t('description.buttonAdd')}
         </Button>
       </div>
