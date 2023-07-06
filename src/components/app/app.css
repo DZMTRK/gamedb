@@ -1,8 +1,8 @@
 #logoAndHeader {
     display: flex;
     justify-content: space-between;
-    background-color:rgb(53, 114, 114);
-    margin-bottom: 5px;
+    background-color:rgb(3, 97, 97);
+    margin-bottom: 15px;
 }
 
 h1 {
@@ -28,4 +28,10 @@ h1 {
 
 #navigation {
     align-self: flex-start;
+}
+
+#theme_switcher{
+    padding-left: 16px;
+    color:azure;
+    font-family: Verdana, Geneva, Tahoma, sans-serif
 }
