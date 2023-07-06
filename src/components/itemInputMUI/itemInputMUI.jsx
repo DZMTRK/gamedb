@@ -26,13 +26,18 @@ const MenuProps = {
   },
 }
 
-function getStyles(name, personName, theme) {
+function getStyles(item, genre, theme) {
   return {
     fontWeight:
-      personName.indexOf(name) === -1
+      genre.indexOf(item) === -1
         ? theme.typography.fontWeightRegular
         : theme.typography.fontWeightMedium,
   }
+}
+
+const labelProps = {
+  shrink: true,
+  required: false,
 }
 
 export default function NewItemInput({ setMessage, setOpen }) {
@@ -128,7 +133,8 @@ export default function NewItemInput({ setMessage, setOpen }) {
           id="title"
           label={t('description.gameTitleInput')}
           value={title}
-          placeholder="Game title"
+          placeholder="e.g. Quake 3 Arena"
+          InputLabelProps={labelProps}
           onChange={handleTitleInput}
         />
         <TextField
@@ -136,16 +142,22 @@ export default function NewItemInput({ setMessage, setOpen }) {
           id="year"
           label={t('description.yearInput')}
           value={year}
-          placeholder="1970"
+          placeholder="1999"
           type="number"
-          InputLabelProps={{
-            shrink: true,
-          }}
+          InputLabelProps={labelProps}
           InputProps={{ inputProps: { min: 1970, max: 2099 } }}
           onChange={handleYearInput}
         />
-        <FormControl sx={{ m: 1, width: '25ch' }}>
-          <InputLabel id="genre" required>{t('description.genreInput')}</InputLabel>
+        <FormControl
+          sx={{ m: 1, width: '25ch' }}
+          required
+        >
+          <InputLabel
+            id="genre"
+            required={false}
+          >
+            {t('description.genreInput')}
+          </InputLabel>
           <Select
             labelId="genre"
             id="demo-multiple-name"
@@ -173,9 +185,7 @@ export default function NewItemInput({ setMessage, setOpen }) {
           type="number"
           value={raiting}
           placeholder="1"
-          InputLabelProps={{
-            shrink: true,
-          }}
+          InputLabelProps={labelProps}
           InputProps={{ inputProps: { min: 1, max: 10 } }}
           onChange={handleRaitingInput}
         />
@@ -184,7 +194,8 @@ export default function NewItemInput({ setMessage, setOpen }) {
           id="developer"
           label={t('description.developerInput')}
           value={developer}
-          placeholder="Developer"
+          placeholder="id Software"
+          InputLabelProps={labelProps}
           onChange={handleDeveloperInput}
         />
         <TextField
@@ -192,7 +203,8 @@ export default function NewItemInput({ setMessage, setOpen }) {
           id="publisher"
           label={t('description.publisherInput')}
           value={publisher}
-          placeholder="Publisher"
+          placeholder="EA,SEGA,Activision,Loki Software"
+          InputLabelProps={labelProps}
           onChange={handlePublisherInput}
         />
         <Button sx={{ width: 150, height: 56, margin: 1 }} type="submit" variant="outlined" color="success">
