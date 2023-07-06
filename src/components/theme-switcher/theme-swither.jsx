@@ -13,7 +13,7 @@ export function ThemeSwither({ colorMode, theme }) {
         {' '}
         {theme.palette.mode === 'light' ? 'dark' : 'light' }
       </span>
-      <IconButton sx={{ ml: 1 }} onClick={colorMode.toggleColorMode} color="info">
+      <IconButton sx={{ ml: 1 }} onClick={colorMode.toggleColorMode} color="warning">
         {theme.palette.mode === 'dark' ? <Brightness7Icon /> : <Brightness4Icon />}
       </IconButton>
     </div>
