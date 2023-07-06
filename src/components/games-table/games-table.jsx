@@ -10,9 +10,9 @@ import { selectTableData } from '../../reducers/selector'
 import deleteElementFromDB from '../../service/deleteElement'
 import getTableData from '../../service/getTableData'
 import mutateElement from '../../service/mutateElement'
+import GameChart from '../game-chart'
 import NewItemInput from '../itemInputMUI/itemInputMUI'
 import * as pagelist from '../pages/pagelist'
-
 
 const Snackbar = React.lazy(() => import('@mui/material/Snackbar'))
 const DeleteDialog = React.lazy(() => import('../delete-dialog'))
@@ -93,6 +93,7 @@ function GamesTable() {
   return (
     <div>
       <NewItemInput setMessage={setMessage} setOpen={setOpen} />
+      <GameChart />
       <DataGrid
         sx={elementMargin}
         rows={data}

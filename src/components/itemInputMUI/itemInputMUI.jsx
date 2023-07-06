@@ -43,9 +43,9 @@ const labelProps = {
 
 export default function NewItemInput({ setMessage, setOpen }) {
   const [title, setTitle] = useState('')
-  const [year, setYear] = useState(null)
+  const [year, setYear] = useState('')
   const [genre, setGenre] = useState([])
-  const [raiting, setRaiting] = useState(null)
+  const [raiting, setRaiting] = useState('')
   const [developer, setDeveloper] = useState('')
   const [publisher, setPublisher] = useState([])
   const theme = useTheme()
