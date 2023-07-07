@@ -73,9 +73,9 @@ export default function NewItemInput({ setMessage, setOpen }) {
 
   const clearForm = useCallback(() => {
     setTitle('')
-    setYear(1970)
+    setYear('')
     setGenre([])
-    setRaiting(1)
+    setRaiting('')
     setDeveloper('')
     setPublisher([])
   }, [])
@@ -185,7 +185,7 @@ export default function NewItemInput({ setMessage, setOpen }) {
           label={t('description.raitingInput')}
           type="number"
           value={raiting}
-          placeholder="1"
+          placeholder="8,7"
           InputLabelProps={labelProps}
           InputProps={{ inputProps: { min: 1, max: 10 } }}
           onChange={handleRaitingInput}
