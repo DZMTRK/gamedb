@@ -33,6 +33,11 @@ const ruLocale = {
       deleteDialogAgree: 'Да',
       mutateItemMessage: 'Выделенный элемент был изменен',
       mutateItemMessageFail: 'Изменения не были сохранены. Нет соединения с БД!',
+      viewSwitcherdescriptionON: 'Вернуться к таблице',
+      viewSwitcherdescriptionOFF: 'Показать диаграмму',
+      chartMainTitle: 'Количество игр в каждом жанре',
+      chartXcatTitle: 'Жанры',
+      chartYcatTitle: 'Количество игр',
     },
   },
 }

@@ -33,6 +33,11 @@ const enLocale = {
       deleteDialogAgree: 'Agree',
       mutateItemMessage: 'Selected item was mutated',
       mutateItemMessageFail: 'Changes were not saved. No connection to DB!',
+      viewSwitcherdescriptionON: 'Back to Table View',
+      viewSwitcherdescriptionOFF: 'Switch to Chart View',
+      chartMainTitle: 'Games amount by genre',
+      chartXcatTitle: 'Genres',
+      chartYcatTitle: 'Games Amount',
     },
   },
 }

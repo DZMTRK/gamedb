@@ -73,7 +73,7 @@ function App() {
                   <section>
                     <Container>
                       <Stack spacing={1} direction="row" alignItems="center" justifyContent="center">
-                        {checked ? <p>Back to Table View</p> : <p>Switch to Chart View</p>}
+                        {checked ? <p>{t('description.viewSwitcherdescriptionON')}</p> : <p>{t('description.viewSwitcherdescriptionOFF')}</p>}
                         <Switch
                           checked={checked}
                           onChange={handleChange}
