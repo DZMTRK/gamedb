@@ -2,7 +2,6 @@ import React, { Suspense, useCallback, useMemo, useState } from 'react'
 
 import Container from '@mui/material/Container'
 import CssBaseline from '@mui/material/CssBaseline'
-import FormControlLabel from '@mui/material/FormControlLabel'
 import Stack from '@mui/material/Stack'
 import { createTheme, ThemeProvider } from '@mui/material/styles'
 import Switch from '@mui/material/Switch'
@@ -75,11 +74,10 @@ function App() {
                     <Container>
                       <Stack spacing={1} direction="row" alignItems="center" justifyContent="center">
                         {checked ? <p>Back to Table View</p> : <p>Switch to Chart View</p>}
-                        <FormControlLabel control={<Switch
+                        <Switch
                           checked={checked}
                           onChange={handleChange}
                           inputProps={{ 'aria-label': 'controlled' }}
-                        />}
                         />
                       </Stack>
                     </Container>
