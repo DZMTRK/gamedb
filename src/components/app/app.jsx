@@ -1,11 +1,16 @@
-import React, { Suspense, useMemo, useState } from 'react'
+import React, { Suspense, useCallback, useMemo, useState } from 'react'
 
+import Container from '@mui/material/Container'
 import CssBaseline from '@mui/material/CssBaseline'
+import FormControlLabel from '@mui/material/FormControlLabel'
+import Stack from '@mui/material/Stack'
 import { createTheme, ThemeProvider } from '@mui/material/styles'
+import Switch from '@mui/material/Switch'
 import { useTranslation } from 'react-i18next'
 import { BrowserRouter as Router, Route, Routes } from 'react-router-dom'
 
 import logo from '../../img/logo.png'
+import GameChart from '../game-chart'
 import LanguageSwitcher from '../language-switcher'
 import Page404 from '../pages/page404'
 import * as pagelist from '../pages/pagelist'
@@ -28,7 +33,7 @@ function App() {
     [],
   )
 
-  const theme = React.useMemo(
+  const theme = useMemo(
     () => createTheme({
       palette: {
         mode,
@@ -36,6 +41,12 @@ function App() {
     }),
     [mode],
   )
+
+  const [checked, setChecked] = useState(false)
+
+  const handleChange = useCallback(event => {
+    setChecked(event.target.checked)
+  }, [])
 
   return (
     <ThemeProvider theme={theme}>
@@ -61,8 +72,19 @@ function App() {
                     </div>
                   </header>
                   <section>
+                    <Container>
+                      <Stack spacing={1} direction="row" alignItems="center" justifyContent="center">
+                        {checked ? <p>Back to Table View</p> : <p>Switch to Chart View</p>}
+                        <FormControlLabel control={<Switch
+                          checked={checked}
+                          onChange={handleChange}
+                          inputProps={{ 'aria-label': 'controlled' }}
+                        />}
+                        />
+                      </Stack>
+                    </Container>
                     <Suspense fallback={<div>{t('description.loading')}</div>}>
-                      <GamesTable />
+                      {checked ? <GameChart /> : <GamesTable />}
                     </Suspense>
                   </section>
                 </div>
