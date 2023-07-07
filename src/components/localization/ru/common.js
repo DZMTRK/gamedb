@@ -38,6 +38,7 @@ const ruLocale = {
       chartMainTitle: 'Количество игр в каждом жанре',
       chartXcatTitle: 'Жанры',
       chartYcatTitle: 'Количество игр',
+      barLabel: 'Количество игр',
     },
   },
 }

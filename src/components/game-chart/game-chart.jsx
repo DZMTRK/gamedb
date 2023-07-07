@@ -43,8 +43,15 @@ function GameChart() {
         text: t('description.chartYcatTitle'),
       }, // the title of the X Axis
     },
+    plotOptions: {
+      bar: {
+        pointWidth: 25,
+      },
+    },
     series: [{
+      name: t('description.barLabel'),
       data: genreArr,
+      colorByPoint: true,
       showInLegend: false,
     }],
   }

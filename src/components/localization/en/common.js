@@ -38,6 +38,7 @@ const enLocale = {
       chartMainTitle: 'Games amount by genre',
       chartXcatTitle: 'Genres',
       chartYcatTitle: 'Games Amount',
+      barLabel: 'Game amount',
     },
   },
 }
